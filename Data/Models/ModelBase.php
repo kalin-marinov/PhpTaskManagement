@@ -3,7 +3,9 @@
 class ModelBase{
     public  function fromArray(array $properties=array()){
         foreach($properties as $key => $value){
-            $this->{$key}= $value;
+            if(property_exists($this, $key)){
+                $this->{$key}= $value;
+            }
         }
     }
     

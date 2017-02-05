@@ -7,6 +7,7 @@ require('data\models\task.php');
 require('data\models\user.php');
 session_start();
 
+
 $connection =  ConnectionFactory::create();
 $taskProvider = new TasksDataProvider($connection);
 

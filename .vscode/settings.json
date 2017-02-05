@@ -1,3 +1,6 @@
 {
-    "php.validate.executablePath": "C:\\php\\php.exe"
+    "php.validate.executablePath": "C:\\php\\php.exe",
+    "php.validate.enable": true,
+    "php.validate.run": "onType",
+    "php.suggest.basic": true
 }

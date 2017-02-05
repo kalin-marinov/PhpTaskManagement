@@ -30,8 +30,9 @@
                 $stmt->bindParam(":$key", $value);		
             }
 
-            $result = $stmt->execute();		
-            return "success";		
+            $result = $stmt->execute();	
+            $count = $stmt->rowCount();	
+            return "success. affected $count entries";		
         }	
         catch (Exception $e) {		
             return "{$e->getMessage()} \n";		

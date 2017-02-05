@@ -1,6 +1,6 @@
 <?php
 
-include('data\ProviderBase.php');
+require_once('data\ProviderBase.php');
 
 class TasksDataProvider extends ProviderBase
 {
@@ -43,6 +43,17 @@ class TasksDataProvider extends ProviderBase
         $params = $task->toArray();
         return $this->executeNonQuery("INSERT INTO Tasks VALUES (:key, :name, :description)", $params);
     }
+    
+    /**
+    * Edits an existing database task
+    * @return string
+    **/
+    public function editRask(Task $task) : string
+    {
+        $params = $task->toArray();
+        return $this->executeNonQuery("UPDATE Tasks SET name=:name, description=:description WHERE Tasks.Key = :key ", $params);
+    }
+    
     
     /**
     * Removes a task by given task key

@@ -1,6 +1,6 @@
 <?php
 
-include('data\models\ModelBase.php');
+require_once('data\models\ModelBase.php');
 
 class Task extends ModelBase{
     

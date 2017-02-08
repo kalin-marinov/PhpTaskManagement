@@ -1,10 +1,10 @@
 <?php
 require_once('data\ProviderBase.php');
 
-class UserDataProvider extends ProviderBase{
+class UserManager extends ProviderBase{
     
     /**
-    * Constructs a new UserDataProvider
+    * Constructs a new UserManager
     * @param PDO $connection - MySQL connection
     */
     function __construct(PDO $connection)

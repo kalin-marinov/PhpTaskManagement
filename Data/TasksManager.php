@@ -2,7 +2,7 @@
 
 require_once('data\ProviderBase.php');
 
-class TasksDataProvider extends ProviderBase
+class TasksManager extends ProviderBase
 {
     /**
     * Constructs a new TaskDataProvider
@@ -48,7 +48,7 @@ class TasksDataProvider extends ProviderBase
     * Edits an existing database task
     * @return string
     **/
-    public function editRask(Task $task) : string
+    public function editTask(Task $task) : string
     {
         $params = $task->toArray();
         return $this->executeNonQuery("UPDATE Tasks SET name=:name, description=:description WHERE Tasks.Key = :key ", $params);

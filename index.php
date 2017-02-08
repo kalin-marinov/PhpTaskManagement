@@ -1,7 +1,7 @@
 <?php
 
-require('data\TasksDataProvider.php');
-require('data\UserDataProvider.php');
+require('data\TasksManager.php');
+require('data\UserManager.php');
 require('factories\ConnectionFactory.php');
 require('data\models\task.php');
 require('data\models\user.php');
@@ -9,7 +9,7 @@ session_start();
 
 
 $connection =  ConnectionFactory::create();
-$taskProvider = new TasksDataProvider($connection);
+$taskProvider = new TasksManager($connection);
 
 $res = $taskProvider->addTask(new Task("T1", "firstTask", "write some php"));
 $res = $taskProvider->addTask(new Task("T2", "secondTask", "write some css"));
@@ -25,7 +25,7 @@ $tasks = $taskProvider->getTasks();
 var_dump($tasks);
 
 // Users test:
-$userProvider = new UserDataProvider($connection);
+$userProvider = new UserManager($connection);
 var_dump($userProvider->getCurrentUser());
 
 $user = new User('admin', 'administrator', 'admin@admin.com');

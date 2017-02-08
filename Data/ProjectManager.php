@@ -1,6 +1,6 @@
 <?php
 
-require_once('data\ProviderBase.php');
+require_once(_DIR_.'\..\..\data\ProviderBase.php');
 
 class ProjectManager extends ProviderBase
 {

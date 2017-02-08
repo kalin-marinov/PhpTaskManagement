@@ -24,6 +24,19 @@ class UserTaskManager extends ProviderBase
          JOIN users u on u.Id = ut.userId
          WHERE ut.taskKey = :key", array(key => $taskKey));
     }
+
+    /**
+    * Returns an array of usernames that are assigned to the task
+    * @return string[]
+    **/
+    public function getTasksForUser(string $userName) : array
+    {
+        return $this->executeQuery(
+        "SELECT u.username FROM usertasks ut
+         JOIN users u on u.Id = ut.userId
+         JOIN tasks t on t.key = ut.taskKey
+         WHERE u.userName = :name", array(name => $userName));
+    }
     
     /** assigns a task to the given user */
     public function assignTask(string $userName, string $taskKey) : string

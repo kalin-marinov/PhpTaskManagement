@@ -21,6 +21,7 @@ class TasksManager extends ProviderBase
     {
         return $this->mapTasks($this->executeQuery("SELECT * FROM tasks"));
     }
+
     
     public function findTask(string $key) : Task
     {

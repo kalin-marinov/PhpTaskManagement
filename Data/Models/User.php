@@ -1,6 +1,6 @@
 <?php
 
-require_once(_DIR_.'\..\..\..\data\models\ModelBase.php');
+require_once(__DIR__.'\ModelBase.php');
 
 class User extends ModelBase{
     

@@ -10,8 +10,7 @@
     $model = new LoginViewModel();
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $model->username = $_POST["username"];
-        $model->password = $_POST["password"];
+        $model->fromArray($_POST);
 
         $res = $userProvider->signIn($model->username, $model->password);
 
@@ -19,7 +18,7 @@
             $userProvider->prepareSession($res);
             Page::Redirect('/Pages/Dashboard.php');
         } else{
-            $error = "Invalid username / password";
+            $model->errors = "Invalid username / password";
         }
      } 
 

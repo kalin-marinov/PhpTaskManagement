@@ -5,7 +5,7 @@
         
         /**
         * @var string $userName username */
-        public $userName;
+        public $username;
 
         /**
         * @var string $userName username */

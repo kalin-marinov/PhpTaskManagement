@@ -21,6 +21,19 @@ class Page{
         
         exit();
     }
+
+    public  static function modify_input($data){
+        $data = trim($data);
+        $data = stripcslashes($data);
+        $data = htmlspecialchars($data);
+
+        return $data;
+    }
+
+    public static function modifyAllInputs(array $inputs) : array{        
+        $mapFunc = Page::modify_input;
+        return array_map($mapFunc, $arr);
+    }
 }
 
 

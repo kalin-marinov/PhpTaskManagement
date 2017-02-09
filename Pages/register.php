@@ -2,17 +2,25 @@
 
 require('..\data\UserManager.php');
 require('..\factories\ConnectionFactory.php');
+require_once('..\helpers\common.php');
+ require_once('..\ViewModels\RegisterViewModel.php');
+ 
 
 $connection =  ConnectionFactory::create();
 $userProvider = new UserManager($connection);
 
+$model = new RegisterViewModel();
+
 $username = $password = $email = $fullName = $confirm = "";
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-    $username = modify_input($_POST["username"]);
-    $password = modify_input($_POST["password"]);
-    $email = modify_input($_POST["loginEmail"]);
-    $fullName = modify_input($_POST["fullName"]);
-    $confirm = modify_input($_POST["confirmPassword"]);
+
+    //$model->  Page::modifyAllInputs($_POST);
+
+    $model->username = Page::modify_input($_POST["username"]);
+    $password =  Page::modify_input($_POST["password"]);
+    $email =  Page::modify_input($_POST["loginEmail"]);
+    $fullName =  Page::modify_input($_POST["fullName"]);
+    $confirm =  Page::modify_input($_POST["confirmPassword"]);
 
 $errors = array();
 
@@ -70,13 +78,7 @@ else
 }
 }
 
-function modify_input($data){
-    $data = trim($data);
-    $data = stripcslashes($data);
-    $data = htmlspecialchars($data);
 
-    return $data;
-    }
 
 function validateEmail($email)
 {

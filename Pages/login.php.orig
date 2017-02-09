@@ -1,0 +1,39 @@
+<?php
+    require_once('..\data\UserManager.php');
+    require_once('..\factories\ConnectionFactory.php');
+    require_once('..\helpers\common.php');
+    require_once('..\ViewModels\LoginViewModel.php');
+
+    $connection =  ConnectionFactory::create();
+    $userProvider = new UserManager($connection);
+    
+    $model = new LoginViewModel();
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $model->username = $_POST["username"];
+        $model->password = $_POST["password"];
+
+        $res = $userProvider->signIn($username, $password);
+
+        if ($res->username != null) {
+<<<<<<< HEAD
+            Page::Redirect('/Pages/Dashboard.php');
+=======
+            $userProvider->prepareSession($res);
+            Redirect('/Pages/Dashboard.php');
+>>>>>>> Add Dashboard page, add two layouts
+        } else{
+            $error = "Invalid username / password";
+        }
+     } 
+
+<<<<<<< HEAD
+
+    Page::View($model);
+=======
+    // Return View
+    $_VIEW = '..\Views\login.php';
+    include('..\Views\LoginLayout.php');
+     
+>>>>>>> Add Dashboard page, add two layouts
+?>

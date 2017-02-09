@@ -13,16 +13,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $email = modify_input($_POST["loginEmail"]);
     $fullName = modify_input($_POST["fullName"]);
     $confirm = modify_input($_POST["confirmPassword"]);
-}
-
-function modify_input($data){
-    $data = trim($data);
-    $data = stripcslashes($data);
-    $data = htmlspecialchars($data);
-    
-    return $data;
-}
-
 
 $errors = array();
 
@@ -43,14 +33,6 @@ if(strlen($password)<6)
     array_push($errors,'The password should be at least 6 charcters!');
 }
 
-function validateEmail($email)
-{
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL))
-        return false;
-    else
-        return  true;
-}
-
 if(count($errors)>0)
 {
     $reg = (object) array(
@@ -60,12 +42,50 @@ if(count($errors)>0)
     'errors' => json_encode($errors)
     );
     
-    include('../index.php');
 }
 else
 {
     $newUser = new User($username,$fullName,$email);
-    $res =  $userProvider->createUser($newUser,$password);
+   $registered =  $userProvider->createUser($newUser,$password);
+   if(strcasecmp($registered,"success. affected 1 entries") == 0)
+{
+    $reg = (object) array(
+        'userName' => $username
+    );
+
+   $_VIEW = '..\Views\Registered.php';
+    include('..\Views\LoginLayout.php');   
+    return;
+}
+else
+{
+    array_push($errors,'Something went wrong! Please try again!');
+    $reg = (object) array(
+        'userName' => $username,
+        'email' => $email,
+        'fullName' => $fullName,
+        'errors' => json_encode($errors)
+    );
+}
+}
 }
 
+function modify_input($data){
+    $data = trim($data);
+    $data = stripcslashes($data);
+    $data = htmlspecialchars($data);
+
+    return $data;
+    }
+
+function validateEmail($email)
+{
+if (!filter_var($email, FILTER_VALIDATE_EMAIL)) 
+ return false;
+else
+    return  true;
+}
+  // Return View
+    $_VIEW = '..\Views\register.php';
+    include('..\Views\LoginLayout.php');
 ?>

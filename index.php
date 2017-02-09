@@ -54,7 +54,7 @@ if (!isset($login)) {
   <div id="wrap">
   <div id="regbar">
     <div id="navthing">
-      <h2><a href="/Pages/login.php" id="loginform">Login</a> | <a href="#" id="registerForm">Register</a> </h2>
+      <h2><a href="/Pages/login.php" id="loginform">Login</a> | <a href="/Pages/register.php" id="registerForm">Register</a> </h2>
    
       <div class="body">
             <?php

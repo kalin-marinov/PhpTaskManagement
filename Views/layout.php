@@ -10,7 +10,8 @@
   <div id="wrap">
     <div id="regbar">
       <div id="navthing">
-        <h2><a href="/Pages/login.php" id="loginform">Login</a> | <a href="#" id="registerForm">Register</a> </h2>
+      <h2><a href="/Pages/login.php" id="loginform">Dashboard</a> | <a href="#" id="registerForm">Projects</a> | 
+      <a href="#" id="registerForm">Tasks</a> | User logged: Test | <a href="/Pages/Logout.php" id="registerForm">Logout</a> </h2>
 
         <div class="body">
           <?php

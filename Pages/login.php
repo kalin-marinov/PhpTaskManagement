@@ -16,6 +16,7 @@
         $res = $userProvider->signIn($username, $password);
 
         if ($res->username != null) {
+            $userProvider->prepareSession($res);
             Page::Redirect('/Pages/Dashboard.php');
         } else{
             $error = "Invalid username / password";

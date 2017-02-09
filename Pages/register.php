@@ -19,7 +19,7 @@ function modify_input($data){
     $data = trim($data);
     $data = stripcslashes($data);
     $data = htmlspecialchars($data);
-
+    
     return $data;
 }
 
@@ -28,7 +28,7 @@ $errors = array();
 
 if(!validateEmail($email))
 {
-array_push($errors,'The email is not in the correct format!');
+    array_push($errors,'The email is not in the correct format!');
 }
 if(strlen($username) < 3)
 {
@@ -40,32 +40,32 @@ if(strcasecmp($confirm,$password) != 0)
 }
 if(strlen($password)<6)
 {
-array_push($errors,'The password should be at least 6 charcters!');  
+    array_push($errors,'The password should be at least 6 charcters!');
 }
 
 function validateEmail($email)
 {
-if (!filter_var($email, FILTER_VALIDATE_EMAIL)) 
- return false;
-else
-    return  true;
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL))
+        return false;
+    else
+        return  true;
 }
 
 if(count($errors)>0)
 {
     $reg = (object) array(
-        'userName' => $username,
-        'email' => $email,
-        'fullName' => $fullName,
-        'errors' => json_encode($errors)
+    'userName' => $username,
+    'email' => $email,
+    'fullName' => $fullName,
+    'errors' => json_encode($errors)
     );
-
+    
     include('../index.php');
 }
 else
 {
     $newUser = new User($username,$fullName,$email);
-   $res =  $userProvider->createUser($newUser,$password);
+    $res =  $userProvider->createUser($newUser,$password);
 }
 
 ?>

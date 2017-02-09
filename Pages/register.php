@@ -2,7 +2,6 @@
 
 require('..\data\UserManager.php');
 require('..\factories\ConnectionFactory.php');
-require('..\data\models\user.php');
 
 $connection =  ConnectionFactory::create();
 $userProvider = new UserManager($connection);
@@ -35,7 +34,7 @@ if(strlen($username) < 3)
 {
     array_push($errors,'The username should be at least 3 charcters!');
 }
-if($confirm == $password)
+if(strcasecmp($confirm,$password) != 0)
 {
     array_push($errors,'The entered passwords are not correct!');
 }
@@ -54,12 +53,19 @@ else
 
 if(count($errors)>0)
 {
-    //display modal dialog with the erros
+    $reg = (object) array(
+        'userName' => $username,
+        'email' => $email,
+        'fullName' => $fullName,
+        'errors' => json_encode($errors)
+    );
+
+    include('../index.php');
 }
 else
 {
-    $newUser = User($username,$fullName,$email);
-    $userProvider->createUser($newUser,$password);
+    $newUser = new User($username,$fullName,$email);
+   $res =  $userProvider->createUser($newUser,$password);
 }
 
 ?>

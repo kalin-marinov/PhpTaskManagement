@@ -64,6 +64,10 @@ fieldset {
     top: -10px;
 }
 
+textarea {
+    resize: none;
+}
+
 form {
     background: #ecf0f1;
     width: 350px;

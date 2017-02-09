@@ -1,6 +1,6 @@
 <?php
 require_once(_DIR_.'\..\..\data\ProviderBase.php');
-
+require_once(_DIR_.'\..\..\data\models\user.php');
 class UserManager extends ProviderBase{
     
     /**
@@ -38,7 +38,7 @@ class UserManager extends ProviderBase{
             $this->prepareSession($user);
             return $user;
         } else{
-            return null;
+            return new User();
         }
     }
     

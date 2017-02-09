@@ -8,7 +8,7 @@
  <div id="wrap">
   <div id="regbar">
     <div id="navthing">
-      <h2>Create Task</h2>      
+      <h2>Create Task | <?=$_USER->username?> </h2>      
       <div class="formContainer">
    <form action="" method="POST">
              <label name="taskname">Task Name</label>

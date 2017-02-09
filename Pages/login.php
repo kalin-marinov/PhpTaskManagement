@@ -1,18 +1,31 @@
 <?php
+    require_once('..\data\UserManager.php');
+    require_once('..\factories\ConnectionFactory.php');
 
-require('..\data\UserManager.php');
-require('..\factories\ConnectionFactory.php');
+    $connection =  ConnectionFactory::create();
+    $userProvider = new UserManager($connection);
 
-$connection =  ConnectionFactory::create();
-$userProvider = new UserManager($connection);
+    function Redirect($url, $permanent = false)
+    {
+        header('Location: ' . $url, true, $permanent ? 301 : 302);
+        exit();
+    }
+    
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $username = $_POST["username"];
+        $password = $_POST["password"];
 
-$username = $password = "";
-if($_SERVER["REQUEST_METHOD"] == "POST"){
-    $username = $_POST["username"];
-    $password = $_POST["password"];
-}
+        $res = $userProvider->signIn($username, $password);
 
-$user = $userProvider->signIn($username,$password);
+        if ($res->username != null) {
+            Redirect('/Pages/Dashboard.php');
+        } else{
+            $error = "Invalid username / password";
+        }
+     } 
 
-//the user should be redirected to the dashboard
+    // Return View
+    $_VIEW = '..\Views\login.php';
+    include('..\Views\layout.php');
+     
 ?>

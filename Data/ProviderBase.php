@@ -3,7 +3,7 @@
   class ProviderBase{
       /**
 	 * the MySQL connection (PDO Object)
-	 * @var PDO connection
+	 * @var PDO $conn connection
 	 **/
 	protected $conn;
 

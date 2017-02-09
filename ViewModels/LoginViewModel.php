@@ -17,7 +17,8 @@
 
         function __construct(string $userName = null, string $password = null, string $errors = null)
         {
-            $this->viewPath = __DIR__."\..\Views\login.php";
+            $viewPath = __DIR__."\..\Views\login.php";
+            parent::__construct($viewPath);
         }
     }
 

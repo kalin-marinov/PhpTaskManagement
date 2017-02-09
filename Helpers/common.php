@@ -31,8 +31,8 @@ class Page{
     }
 
     public static function modifyAllInputs(array $inputs) : array{        
-        $mapFunc = Page::modify_input;
-        return array_map($mapFunc, $arr);
+        $mapFunc = 'Page::modify_input';
+        return array_map($mapFunc, $inputs);
     }
 }
 

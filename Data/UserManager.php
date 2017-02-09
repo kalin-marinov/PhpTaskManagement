@@ -2,7 +2,8 @@
 require_once(__DIR__.'\ProviderBase.php');
 require_once(__DIR__.'\models\user.php');
 
-class UserManager extends ProviderBase{
+class UserManager extends ProviderBase
+{
     
     /**
     * Constructs a new UserManager
@@ -13,7 +14,8 @@ class UserManager extends ProviderBase{
         parent::__construct($connection);
     }
     
-    public function createUser(User $user, string $password){
+    public function createUser(User $user, string $password)
+    {
         $hash = password_hash($password, PASSWORD_DEFAULT);
         $params = $user->toArray();
         $params['passwordHash'] = $hash;
@@ -21,41 +23,53 @@ class UserManager extends ProviderBase{
         return $this->executeNonQuery("INSERT INTO Users VALUES (0, :username, :passwordHash, :fullName, :email)", $params);
     }
     
-    public function verifyCredentials(string $username, string $password) : bool{
+    public function verifyCredentials(string $username, string $password) : bool
+    {
         $result = $this->executeQuery("SELECT passwordHash FROM Users where Users.username = :name)", array("name" => $username));
         $hash = $result[0];
         return password_verify($password, $hash);
     }
     
-    public function signIn(string $username, string $password) : User {
+    public function signIn(string $username, string $password) : User
+    {
         $result = $this->executeQuery("SELECT * FROM users where username = :name", array("name" => $username));
         $hash = $result[0]['passwordHash'];
         
         $isValid = password_verify($password, $hash);
         
-        if($isValid){
+        if ($isValid) {
             $user = new User();
             $user->fromArray($result[0]);
             $this->prepareSession($user);
             return $user;
-        } else{
+        } else {
             return new User();
         }
     }
     
-    public function getCurrentUser(){
-        return  $_SESSION['user'];
+    public function getCurrentUser() : User
+    {
+        $user = $this->convertToUser($_SESSION['user']);
+        return  $user;
     }
     
-    public function logOut(){
+    public function logOut()
+    {
         unset($_SESSION['user']);
         unset($_SESSION['isLoggedIn']);
     }
     
-    private function prepareSession(User $user){
+    private function prepareSession(User $user)
+    {
         $_SESSION['user'] = $user;
         $_SESSION['isLoggedIn'] = true;
     }
-}
 
-?>
+    private function convertToUser(&$object)
+    {
+        if (!is_object ($object) && gettype ($object) == 'object') {
+            return ($object = unserialize (serialize ($object)));
+        }
+        return $object;
+    }
+}

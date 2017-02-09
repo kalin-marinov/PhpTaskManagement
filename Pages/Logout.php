@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once('..\data\UserManager.php');
 require('..\factories\ConnectionFactory.php');
 

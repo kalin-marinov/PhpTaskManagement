@@ -1,5 +1,10 @@
-<html>
+<?php
+require_once(__DIR__.'\..\factories\DataFactory.php');
 
+$userManager = DataFactory::createUserManager();
+$username = $userManager->getCurrentUser()->username;
+?>
+<html>
 <head>
   <link rel="stylesheet" href="/Assets/css/loginPage.css">
   <script src='/Assets/js/jquery-3.1.1.min.js' type="text/javascript"></script>
@@ -10,8 +15,9 @@
   <div id="wrap">
     <div id="regbar">
       <div id="navthing">
-      <h2><a href="/Pages/login.php" id="loginform">Dashboard</a> | <a href="#" id="registerForm">Projects</a> | 
-      <a href="#" id="registerForm">Tasks</a> | User logged: Test | <a href="/Pages/Logout.php" id="registerForm">Logout</a> </h2>
+      <h2><a href="/Pages/login.php" >Dashboard</a> | <a href="/Pages/CreateProject.php" > Create Projects</a> | 
+      <a href="/Pages/CreateTask.php" >Create Tasks</a> | <a href="/Pages/CreateProject.php" > View Projects</a> | 
+      <a href="/Pages/CreateTask.php" >View Tasks</a> |User logged: <?=$username?> | <a href="/Pages/Logout.php">Logout</a> </h2>
 
         <div class="body">
           <?php

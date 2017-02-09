@@ -1,27 +1,31 @@
-<html>
+<?php
+    session_start();
+    require_once(__DIR__.'\..\factories\DataFactory.php');
+    require_once(__DIR__.'\..\helpers\ProjectValidator.php');
+    require_once(__DIR__.'\..\helpers\common.php');
+    require_once(__DIR__.'\..\data\models\Project.php');
 
-<head>
-  <link rel="stylesheet" href="../Assets/css/loginPage.css">
-  <script src='../Assets/js/jquery-3.1.1.min.js' type="text/javascript"></script>
-  <script src="../Assets/js/Login.js" type="text/javascript"></script>
-</head>
+    $projectManager = DataFactory::createProjectManager();
+    $projectValidator = new ProjectValidator();
+    $model = new ProjectViewModel();
 
-<body>
-  <div id="wrap">
-    <div id="regbar">
-      <div id="navthing">
-        <h2>Create Project</h2>
-        <div class="formContainer">
-          <form action="" method="POST">
-            <label name="projectname">Project Name</label>
-            <input type="text" name="projectname" />
-            <label name="description">Project Description</label>
-            <textarea rows="4" cols="50" name="description"></textarea>
-            <input type="submit" value="Create" />
-          </form>
-        </div>
-      </div>
-    </div>
-</body>
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $model->fromArray(Page::modifyAllInputs($_POST));
+        $errors = $projectValidator->validate($model);
 
-</html>
+          if (count($errors) > 0) {
+              $model->errors = json_encode($errors);
+          } else {
+            $newProject = new Project($model->projectKey, $model->projectName,$model->projectDescription);
+            $result = $projectManager->addProject($newProject);
+             if (strcasecmp($result, "success. affected 1 entries") == 0) {
+            $successModel = new ViewModelBase("..\Views\createdProject.php");
+            Page::View($successModel);
+            }
+             array_push($errors, 'Project with the same key already exists!');
+            $model->errors = json_encode($errors);
+          }
+    } 
+    Page::View($model,'..\Views\layout.php');
+?>
+

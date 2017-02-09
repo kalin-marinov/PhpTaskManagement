@@ -1,27 +1,28 @@
-<html>
+<?php
+    session_start();
+    require_once(__DIR__.'\..\factories\DataFactory.php');
+    require_once(__DIR__.'\..\helpers\TaskValidator.php');
+    require_once(__DIR__.'\..\helpers\common.php');
+    require_once(__DIR__.'\..\data\models\Task.php');
 
-<head>
-  <link rel="stylesheet" href="../Assets/css/loginPage.css">
-  <script src='../Assets/js/jquery-3.1.1.min.js' type="text/javascript"></script>
-  <script src="../Assets/js/Login.js" type="text/javascript"></script>
-</head>
+    $taskManager = DataFactory::createTaskManager();
+    $projectValidator = new ProjectValidator();
+    $model = new ProjectViewModel();
 
-<body>
-  <div id="wrap">
-    <div id="regbar">
-      <div id="navthing">
-        <h2>Create Task | <?=$_USER->username?> </h2>
-        <div class="formContainer">
-          <form action="" method="POST">
-            <label name="taskname">Task Name</label>
-            <input type="text" name="projectname" />
-            <label name="description">Task Description</label>
-            <textarea rows="4" cols="50" name="description"></textarea>
-            <input type="submit" value="Create" />
-          </form>
-        </div>
-      </div>
-    </div>
-</body>
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $model->fromArray(Page::modifyAllInputs($_POST));
+        $erros = $projectValidator->validate($model);
 
-</html>
+          if (count($errors) > 0) {
+              $model->errors = json_encode($errors);
+          } else {
+            $newTask = new Task($model->projectName,$model->projectDescription);
+            $result = $taskManager->addTask($newTask);
+             if (strcasecmp($result, "success. affected 1 entries") == 0) {
+            $successModel = new ViewModelBase("..\Views\createdProject.php");
+            Page::View($successModel);
+            }
+          }
+    } 
+    Page::View($model,'..\Views\layout.php');
+?>

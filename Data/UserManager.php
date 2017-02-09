@@ -1,6 +1,7 @@
 <?php
-require_once(__DIR__.'\..\..\data\ProviderBase.php');
-require_once(__DIR__.'\..\..\data\models\user.php');
+require_once(__DIR__.'\ProviderBase.php');
+require_once(__DIR__.'\models\user.php');
+
 class UserManager extends ProviderBase{
     
     /**

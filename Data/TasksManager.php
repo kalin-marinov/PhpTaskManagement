@@ -1,6 +1,6 @@
 <?php
 
-require_once(__DIR__.'\..\..\data\ProviderBase.php');
+require_once(__DIR__.'\ProviderBase.php');
 
 class TasksManager extends ProviderBase
 {

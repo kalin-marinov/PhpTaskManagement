@@ -1,6 +1,6 @@
 <?php
     $model = new LoginViewModel();
-    if(iset($_MODEL)) $model = $_MODEL;
+    if(isset($_MODEL)) $model = $_MODEL;
 
 ?>
  

@@ -1,5 +1,5 @@
 <?php
-    require_once(__DIR__.'..\ViewModels\ViewModelBase.php');
+    require_once(__DIR__.'\ViewModelBase.php');
 
     class LoginViewModel extends ViewModelBase { 
         
@@ -17,7 +17,7 @@
 
         function __construct(string $userName = null, string $password = null, string $errors = null)
         {
-            $this->viewPath = __DIR__."../Views/login.php";
+            $this->viewPath = __DIR__."\..\Views\login.php";
         }
     }
 

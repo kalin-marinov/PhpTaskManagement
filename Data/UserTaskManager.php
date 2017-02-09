@@ -1,6 +1,6 @@
 <?php
 
-require_once(_DIR_.'\..\..\data\ProviderBase.php');
+require_once(__DIR__.'\ProviderBase.php');
 
 class UserTaskManager extends ProviderBase
 {

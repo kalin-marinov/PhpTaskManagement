@@ -13,7 +13,7 @@
         $model->username = $_POST["username"];
         $model->password = $_POST["password"];
 
-        $res = $userProvider->signIn($username, $password);
+        $res = $userProvider->signIn($model->username, $model->password);
 
         if ($res->username != null) {
             $userProvider->prepareSession($res);

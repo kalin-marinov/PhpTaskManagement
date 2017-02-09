@@ -47,25 +47,19 @@ $userProvider->signIn($user->username, "password");
   <div id="regbar">
     <div id="navthing">
       <h2><a href="#" id="loginform">Login</a> | <a href="#" id="registerForm">Register</a></h2>
-    <div class="login">
-      <div class="arrow-up"></div>
-      <div class="formholder">
-        <div class="randompad">
-           <form action="Access\login.php\" method="POST">
+    <div class="formContainer" id="login" >
+      <div class="arrow-up"></div>       
+           <form action="Pages\login.php\" method="POST">
              <label name="username">Username</label>
              <input type="text" name="username"/>
              <label name="password">Password</label>
              <input type="password" name="password"/>
              <input type="submit" value="Login" /> 
            </form>
-        </div>
-      </div>
     </div>
-      <div class="register">
-      <div class="register-up"></div>
-      <div class="formholder">
-        <div class="randompad">
-           <form action="Access\register.php\" method="POST">
+      <div class="formContainer" id="register">
+      <div class="register-up"></div>      
+           <form action="Pages\register.php\" method="POST">
              <label name="username">Username</label>
              <input type="text" name="username" maxlength="40" minLength="3"/>
              <label name="fullName">Full Name</label>
@@ -78,8 +72,6 @@ $userProvider->signIn($user->username, "password");
              <input type="password" name="confirmPassword" />
              <input type="submit" value="Register" /> 
            </form>
-        </div>
-      </div>
     </div>
     </div>
   </div>

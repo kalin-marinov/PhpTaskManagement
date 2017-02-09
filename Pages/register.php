@@ -1,8 +1,8 @@
 <?php
 require_once(__DIR__.'\..\factories\DataFactory.php');
-require_once(__DIR__.'..\helpers\common.php');
-require_once(__DIR__.'..\ViewModels\RegisterViewModel.php');
-require_once(__DIR__.'..\helpers\RegisterValidator.php');
+require_once(__DIR__.'\..\helpers\common.php');
+require_once(__DIR__.'\..\ViewModels\RegisterViewModel.php');
+require_once(__DIR__.'\..\helpers\RegisterValidator.php');
 
 $userProvider = DataFactory::createUserManager();
 

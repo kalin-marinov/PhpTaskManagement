@@ -1,6 +1,8 @@
 <?php
     session_start();
     require_once(__DIR__.'\..\factories\DataFactory.php');
+    require_once(__DIR__.'\..\ViewModels\LoginViewModel.php');
+    require_once(__DIR__.'\..\helpers\common.php');
 
     $userProvider = DataFactory::createUserManager();
     

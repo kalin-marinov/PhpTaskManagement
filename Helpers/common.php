@@ -25,10 +25,9 @@ class Page{
         
         if(isset($layout)){
             include(Page::PrepareViewPath($layout));
-        }else{
+        } else {
             include(__DIR__.'\..\Views\layout.php'); // default $layout;
-        }
-        
+        }   
         exit();
     }
     

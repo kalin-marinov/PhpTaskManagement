@@ -3,15 +3,15 @@ $model = new CreateProjectViewModel();
 if (isset($_MODEL)) $model = $_MODEL;
 ?>
 
-  <form action="/Pages/CreateProject.php/" method="POST">
+  <form id="taskForm" action="/Pages/CreateProject.php/" method="POST" class="centered top-spaced">
 
-    <label name="projectKey">Project Key</label>
+    <label class="required" for="projectKey">Project Key</label>
     <input type="text" name="projectKey" value="<?=$model->projectKey?>" required />
 
-    <label name="projectname">Project Name</label>
+    <label class="required" for="projectname">Project Name</label>
     <input type="text" name="projectName" value="<?=$model->projectName?>" required/>
 
-    <label name="description">Project Description</label>
+    <label class="required" for="description">Project Description</label>
     <textarea rows="4" cols="50" name="projectDescription" value="<?=$model->projectDescription?>" required>
     </textarea>
 

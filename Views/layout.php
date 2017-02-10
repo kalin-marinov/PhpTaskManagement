@@ -4,32 +4,31 @@ require_once(__DIR__.'\..\factories\DataFactory.php');
 $userManager = DataFactory::createUserManager();
 $username = $userManager->getCurrentUser()->username;
 ?>
-<html>
-<head>
-  <link rel="stylesheet" href="/Assets/css/loginPage.css">
-  <script src='/Assets/js/jquery-3.1.1.min.js' type="text/javascript"></script>
-  <script src="/Assets/js/Login.js" type="text/javascript"></script>
-</head>
+  <html>
 
-<body>
-  <div id="wrap">
-    <div id="regbar">
-      <div id="navthing">
-      <h2><a href="/Pages/login.php" >Dashboard</a> | <a href="/Pages/CreateProject.php" > Create Projects</a> | 
-      <a href="/Pages/CreateTask.php" >Create Tasks</a> | <a href="/Views/allProjects.php" > View Projects</a> | 
-      <a href="/Pages/CreateTask.php" >View Tasks</a> |User logged: <?=$username?> | <a href="/Pages/Logout.php">Logout</a> </h2>
+  <head>
+    <link rel="stylesheet" href="/Assets/css/loginPage.css">
+    <script src='/Assets/js/jquery-3.1.1.min.js' type="text/javascript"></script>
+    <script src="/Assets/js/Login.js" type="text/javascript"></script>
+  </head>
 
-        <div class="body">
-          <?php
-            if (isset($_VIEW)) {
-                include($_VIEW);
-            }
-          ?>
-        </div>
+  <body>
+    <div class="nav" role="nav">
+      <div class="centered">
+        <a href="/Pages/login.php">Dashboard</a> 
+        <a href="/Views/allProjects.php"> Projects</a> 
+        <a href="/Pages/CreateTask.php"> Tasks</a> 
+        <a href="#"> User <?=$username?> </a>
+         <a href="/Pages/Logout.php">Logout</a>
       </div>
     </div>
-  </div>
-  </div>
-</body>
+    <div class="body">
+      <?php
+      if (isset($_VIEW)) {
+          include($_VIEW);
+      }
+      ?>
+    </div>
+  </body>
 
-</html>
+  </html>

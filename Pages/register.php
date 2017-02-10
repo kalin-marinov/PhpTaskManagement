@@ -21,16 +21,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         $result =  $userProvider->createUser($newUser, $model->password);
         
         if (strcasecmp($result, "success. affected 1 entries") == 0) {
-            $successModel = new ViewModelBase("..\Views\registered.php");
-            Page::View($successModel);
+            Page::View(null, "registered");
         }
 
         array_push($errors, 'User already in use!');
         $model->errors = json_encode($errors);
     }
 }
- Page::View($model, '..\Views\loginLayout.php');
+ Page::View($model, 'loginLayout');
 
-
-
-  // Return View
+?>

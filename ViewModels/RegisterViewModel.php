@@ -1,7 +1,6 @@
 <?php
-    require_once(__DIR__.'\ViewModelBase.php');
 
-    class RegisterViewModel extends ViewModelBase { 
+    class RegisterViewModel { 
         
         /**
         * @var string $userName username */
@@ -28,12 +27,6 @@
         * @var string $userName username */
         public $errors;
 
-        function __construct(string $username = null, string $password = null, string $confirmPassword = null,
-         string $email = null, string $fullName = null,string $errors = null)
-        {
-            $viewPath = __DIR__."/../Views/register.php";
-            parent::__construct($viewPath);
-        }
     }
 
 ?>

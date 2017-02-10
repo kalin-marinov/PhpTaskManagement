@@ -19,5 +19,5 @@
             $model->errors = "Invalid username / password";
         }
      } 
-    Page::View($model,'..\Views\loginLayout.php');
+    Page::View($model, 'login', 'loginLayout');
 ?>

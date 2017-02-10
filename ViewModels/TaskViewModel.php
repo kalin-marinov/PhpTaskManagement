@@ -1,7 +1,6 @@
 <?php
-    require_once(__DIR__.'\ViewModelBase.php');
 
-    class TaskViewModel extends ViewModelBase { 
+    class CreateTaskViewModel { 
         
          /**
         * @var string $taskKey task key */
@@ -28,12 +27,14 @@
         * @var string $userName username */
         public $errors;
 
-        function __construct(string $taskKey = null, string $projectKey = null, string $taskName = null,
-       string $taskDescription = null, string $parentKey = null, string $errors = null)
-        {
-            $viewPath = __DIR__."/../Views/createTask.php";
-            parent::__construct($viewPath);
+        /**
+        * @return Task
+        */
+        public function convertToTask():Task{
+          return new Task($this->taskKey,$this->taskName,
+                  $this->taskDescription, $this->projectKey, $this->parentKey);
         }
+
     }
 
 ?>

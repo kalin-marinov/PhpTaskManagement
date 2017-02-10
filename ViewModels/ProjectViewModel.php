@@ -1,7 +1,6 @@
 <?php
-    require_once(__DIR__.'\ViewModelBase.php');
 
-    class ProjectViewModel extends ViewModelBase { 
+    class CreateProjectViewModel { 
         
         /**
         * @var string $projectKey project key should at least 10 charters long */
@@ -20,10 +19,13 @@
         * @var string $userName username */
         public $errors;
 
-        function __construct(string $projectName = null, string $projectDescription = null, string $errors = null)
+          /**
+        * Maps the view model to a Project (data model)
+        */
+        public function convertToProject() : Project
         {
-            $viewPath = __DIR__."/../Views/createProject.php";
-            parent::__construct($viewPath);
+             $newTask = new Task($this->taskKey,$this->taskName,
+                $this->taskDescription, $this->projectKey, $this->parentKey);
         }
     }
 

@@ -4,10 +4,15 @@ class ConnectionFactory{
     
     public static function create() : PDO {
         // Default parameters:
-        $host = "eu-cdbr-azure-west-d.cloudapp.net";
+        // $host = "eu-cdbr-azure-west-d.cloudapp.net";
+        // $db = "taskmanagement";
+        // $user = "b42e25c9b39192";
+        // $pass = "d7cd0911";
+
+        $host = "localhost:3306";
         $db = "taskmanagement";
-        $user = "b42e25c9b39192";
-        $pass = "d7cd0911";
+        $user = "testUser";
+        $pass = "testPassword";
         
         $conn = new PDO("mysql:host=$host;dbname=$db", $user, $pass);
         return $conn;

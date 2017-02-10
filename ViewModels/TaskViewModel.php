@@ -29,15 +29,21 @@ class TaskViewModel extends ModelBase {
     * @var array $comments array of comments */
     public $comments;  
 
+    /**
+    * The user that is assigned to the task
+    * @var string $user array of comments */
+    public $user;
+
      function __construct(string $taskKey = null, string $taskName = null, 
      string $taskDescription = null, string $projectKey = null, 
-     string $parentKey = null, array $comments =null){
+     string $parentKey = null, array $comments =null, string $user = null){
         $this->taskKey = $taskKey;
         $this->taskName = $taskName;
         $this->taskDescription = $taskDescription;
         $this->parentKey = $parentKey;
         $this->projectKey = $projectKey;
         $this->comments = $comments;
+        $this->user = $user;
     }
 }
 

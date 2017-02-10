@@ -33,6 +33,9 @@ class Task extends ModelBase{
     * @var string
     **/
     public $projectKey;  
+
+
+    public $userId;
     
     function __construct(string $key = null, string $name = null, string $description = null,
        string $projectKey = null, string $parentKey = null){

@@ -22,7 +22,7 @@ if (isset($_MODEL))  $model = $_MODEL;
       <tr>
         <td>Assigned User: </td>
         <td>
-          <?=$model->parentKey?>
+          <?=$model->user?>
         </td>
       </tr>
     </table>

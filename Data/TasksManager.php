@@ -72,7 +72,8 @@ class TasksManager extends ProviderBase
     **/
     public function editTask(Task $task) : string
     {
-       $params = array('name' => $task->name , 'description' => $task->description);
+       $params = array('name' => $task->name , 'description' => $task->description,
+                         'key'=> $task->key);
         return $this->executeNonQuery("UPDATE Tasks SET 
            name=:name, description=:description WHERE Tasks.Key = :key ", $params);
     }

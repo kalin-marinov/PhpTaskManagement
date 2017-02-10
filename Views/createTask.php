@@ -14,7 +14,8 @@ if (isset($_MODEL)) {
     <input type="text" name="taskName" value="<?=$model->taskName?>" />
 
     <label name="taskDescription">Task Description</label>
-    <textarea rows="4" cols="50" name="taskDescription" value="<?=$model->taskDescription?>">
+    <textarea rows="4" cols="50" name="taskDescription">
+      <?=$model->taskDescription?>
     </textarea>
 
     <label class="required" for="selectedKey">Project</label>

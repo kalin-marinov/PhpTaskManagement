@@ -1,10 +1,10 @@
 <?php
 
- require_once(__DIR__.'\..\ViewModels\ProjectViewModel.php');
+ require_once(__DIR__.'\..\ViewModels\CreateProjectViewModel.php');
 
 class ProjectValidator
 {
-    public function validate(ProjectViewModel $model) : array
+    public function validate(CreateProjectViewModel $model) : array
     {
         $errors = array();
 

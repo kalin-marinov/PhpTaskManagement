@@ -13,7 +13,8 @@ if (isset($_MODEL)) $model = $_MODEL;
     <input type="text" name="projectName" value="<?=$model->projectName?>" required/>
 
     <label class="required" for="description">Project Description</label>
-    <textarea rows="4" cols="50" name="projectDescription" value="<?=$model->projectDescription?>" required>
+    <textarea rows="4" cols="50" name="projectDescription" required>
+    <?=$model->projectDescription?>
     </textarea>
 
     <input type="submit" value="Create" />

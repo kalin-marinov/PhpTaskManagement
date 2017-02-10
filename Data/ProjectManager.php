@@ -6,7 +6,7 @@ require_once(__DIR__.'\models\Project.php');
 class ProjectManager extends ProviderBase
 {
     /**
-    * Constructs a new TaskDataProvider
+    * Constructs a new ProjectDataProvider
     * @param PDO $connection - MySQL connection
     */
     function __construct(PDO $connection)
@@ -27,7 +27,8 @@ class ProjectManager extends ProviderBase
     {
         try{
             $param = array('key' => $key);
-            return $this->mapProjects($this->executeQuery("SELECT * FROM projects where key = :key", $param))[0];
+            return $this->mapProjects($this->executeQuery(
+            "SELECT * FROM projects where key = :key", $param))[0];
         } catch(Exception $err){
             return null;
         }
@@ -35,7 +36,7 @@ class ProjectManager extends ProviderBase
     
     
     /**
-    * Adds a new task to the database. If the key already exists,
+    * Adds a new project to the database. If the key already exists,
     * the database will not be modified
     * @return string
     **/
@@ -47,7 +48,7 @@ class ProjectManager extends ProviderBase
     }
     
     /**
-    * Edits an existing database task
+    * Edits an existing database project
     * @return string
     **/
     public function editProjectDescription(string $projectKey, string $newDescription) : string
@@ -58,8 +59,8 @@ class ProjectManager extends ProviderBase
     
     
     /**
-    * Removes a task by given task key
-    * @param string $projectKey the key of the task
+    * Removes a project by given project key
+    * @param string $projectKey the key of the project
     * @return string
     **/
     public function removeProject(string $projectKey) : string

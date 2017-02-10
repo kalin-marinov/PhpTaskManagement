@@ -4,7 +4,8 @@ if (isset($_MODEL))  $model = $_MODEL;
 ?>
 
   <div class="white-board">
-    <div class="centered">
+    <div class="content centered">
+      <img src="https://freeiconshop.com/wp-content/uploads/edd/task-done-flat.png" class="fix-left" />
       <h1> A collection of all tasks </h1>
       <p> Your task are currently split into projects</p>
       <p> You may create new tasks and exists </p>
@@ -57,4 +58,6 @@ foreach ($model as $task) { ?>
 
     <a class="btn-white" href="/pages/CreateTask.php"> Create New </a>
 
+    <p> Unable to find the task you are looking for? </p>
+    <p> <a href="/pages/allprojects.php" > Try searching by project instead </a>
   </div>

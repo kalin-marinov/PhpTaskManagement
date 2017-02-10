@@ -6,6 +6,7 @@ require_once(__DIR__.'\..\factories\DataFactory.php');
 require_once(__DIR__.'\..\helpers\TaskValidator.php');
 require_once(__DIR__.'\..\helpers\common.php');
 require_once(__DIR__.'\..\data\models\Task.php');
+require_once(__DIR__.'\..\viewModels\CreateTaskViewModel.php');
 
 $taskManager = DataFactory::createTaskManager();
 $projectValidator = new TaskValidator();

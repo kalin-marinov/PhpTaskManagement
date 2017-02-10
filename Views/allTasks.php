@@ -1,29 +1,60 @@
 <?php
-  $model = array();
-if (isset($_MODEL)) {
-    $model = $_MODEL;
-}
-?>  
+$model = array();
+if (isset($_MODEL))  $model = $_MODEL;
+?>
 
-<table>
-    <thead>
+  <div class="white-board">
+    <div class="centered">
+      <h1> A collection of all tasks </h1>
+      <p> Your task are currently split into projects</p>
+      <p> You may create new tasks and exists </p>
+      <p> Place a summary here - How many tasks, projects</p>
+
+    </div>
+  </div>
+
+
+  <div class="centered view-container">
+    <h1> Tasks </h1>
+    <table>
+      <thead>
         <tr>
-            <th> Project key </th>
-            <th> Task key </th>
-            <th> Task name </th>
-            <th> Task description </th>
+          <th> Project key </th>
+          <th> Task key </th>
+          <th> Task name </th>
+          <th> Task description </th>
+          <th colspan="2"> Options </th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php
+foreach ($model as $task) { ?>
+          <tr>
+            <td>
+              <?=$task->projectKey?>
+            </td>
+            <td>
+              <a href="task.php?key=<?=$task->key?>">
+                <?=$task->key?>
+              </a>
+            </td>
+            <td>
+              <?=$task->name?>
+            </td>
+            <td>
+              <?=$task->description?>
+            </td>
+            <td>
+              <a href="#"> Edit </a>
+            </td>
+            <td>
+              <a href="#"> Delete </a>
+            </td>
+          </tr>
+          <?php } ?>
+      </tbody>
+    </table>
 
-        </tr>
-    </thead>
-    <tbody>
-    <?php
-    foreach ($model as $task) { ?>
-         <tr>
-            <td> <?=$task->projectKey?> </td>
-            <td> <a href="task.php?key=<?=$task->key?>"> <?=$task->key?></a> </td>
-            <td> <?=$task->name?> </td>
-            <td> <?=$task->description?> </td>
-        </tr>
-    <?php } ?> 
-    </tbody>
-</table>
+    <a class="btn-white" href="/pages/CreateTask.php"> Create New </a>
+
+  </div>

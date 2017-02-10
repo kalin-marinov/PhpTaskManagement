@@ -11,6 +11,7 @@ body {
     padding: 0;
     font-family: 'Open Sans', sans-serif;
     background: #2c3e50;
+    color:whitesmoke;
 }
 
 .centered{
@@ -34,6 +35,80 @@ body {
 
 .centered.loginNav{
     width:350px;
+}
+
+
+.white-board{
+    background-color: white;
+    color:#20354a;
+    padding: 120px 60px;
+    font-size: 1.2em;
+    border-bottom: 1px solid lightgray;
+}
+
+.white-board .centered{
+      width: 60%;      
+}
+
+.btn-white{
+    background-color:white;
+    display:inline-flex;
+    padding:15px;
+    margin:30px 0px;
+    color:#20354a;
+    border-radius: 5px;
+    border:2px solid lightgray;
+    
+}
+
+
+.view-container{
+    /*background: #ecf0f1;*/
+    width: 60%;
+    height: 100vh;
+    overflow-x: auto;
+    padding: 100px;
+}
+
+table{
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    display: table;
+    border-radius:3px;
+    box-shadow: 1px 1px 5px #2f2f2f;
+}
+
+table thead tr{
+  background-color: black;
+  color:white;
+}
+
+table tr{
+    border-bottom: 1px solid #ddd;
+    /*background-color: #20354a;*/
+     background-color: white;
+     color:#2d2d2d;
+   
+}
+
+table tr:nth-child(2n) {
+    background-color:#eff2f4;
+        color:#2d2d2d;
+}
+
+table td,
+table th{
+    padding: 15px 8px;
+    display: table-cell;
+    text-align: left;
+    vertical-align: top;
+      font-weight: normal;
+      font-size:1.05em;
+}
+
+table a{
+      color:#34495e;
 }
 
 #task-form{
@@ -76,6 +151,7 @@ form {
     width: 350px;
     padding: 50px 60px;
     box-shadow: 2px 6px 10px 2px #292929;
+    color:black;
 }
 
 

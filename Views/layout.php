@@ -7,9 +7,8 @@ $username = $userManager->getCurrentUser()->username;
   <html>
 
   <head>
-    <link rel="stylesheet" href="/Assets/css/loginPage.css">
+    <link rel="stylesheet" href="/Assets/css/site.css">
     <script src='/Assets/js/jquery-3.1.1.min.js' type="text/javascript"></script>
-    <script src="/Assets/js/Login.js" type="text/javascript"></script>
     <script src="/Assets/js/site.js" type="text/javascript"></script>
   </head>
 

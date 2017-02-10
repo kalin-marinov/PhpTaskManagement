@@ -18,8 +18,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $model->errors = json_encode($errors);
     } else {
         $newProject = $model->convertToProject();
+        $result = $projectManager->addProject($newProject);
         if (strcasecmp($result, "success. affected 1 entries") == 0) {
-            Page::View(null, "createdProject");
+             Page::Redirect('/Pages/allProjects.php');
         }
         array_push($errors, 'Project with the same key already exists!');
         $model->errors = json_encode($errors);

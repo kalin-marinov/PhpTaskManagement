@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $newTask = $model->convertToTask();
         $result = $taskManager->addTask($newTask);
         if (strcasecmp($result, "success. affected 1 entries") == 0) {
-            Page::View(null, "createdTask");
+             Page::Redirect('/Pages/allTasks.php');
         }
         array_push($errors, 'Task with the same key already exists!');
         $model->errors = json_encode($errors);

@@ -29,6 +29,13 @@ class CreateProjectViewModel extends ModelBase {
         return  new Project($this->projectKey,$this->projectName,
         $this->projectDescription);
     }
+
+     function __construct(string $projectKey = null, string $projectName = null, 
+     string $projectDescription = null){
+         $this->projectKey = $projectKey;
+         $this->projectName = $projectName;
+         $this->projectDescription = $projectDescription;
+    }
 }
 
 ?>

@@ -8,7 +8,7 @@ if (isset($_MODEL)) {
   <form id="task-form" action="/Pages/editTask.php/" method="POST" class="centered">
     <h1> Edit Task </h1>
     <label class="required" for="taskKey">Taks Key</label>
-    <input type="text" name="taskKey" value="<?=$model->taskKey?>" disabled/>
+    <input type="text" name="taskKey" value="<?=$model->taskKey?>" readonly/>
 
     <label class="required" for="taskname">Task Name</label>
     <input type="text" name="taskName" value="<?=$model->taskName?>" />
@@ -19,7 +19,7 @@ if (isset($_MODEL)) {
     </textarea>
 
     <label class="required" for="selectedKey">Project Key</label>
-    <select name="selectedKey" disabled>
+    <select name="selectedKey" readonly>
       <option value="<?=$model->selectedKey?>"><?=$model->selectedKey?></option>
    </select> 
 

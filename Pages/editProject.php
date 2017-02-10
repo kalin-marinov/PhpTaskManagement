@@ -3,21 +3,20 @@ require_once(__DIR__.'\..\helpers\common.php');
 Page::Authorize();
 
 require_once(__DIR__.'\..\factories\DataFactory.php');
-require_once(__DIR__.'\..\ViewModels\CreateTaskViewModel.php');
-require_once(__DIR__.'\..\helpers\TaskValidator.php');
+require_once(__DIR__.'\..\ViewModels\CreateProjectViewModel.php');
+require_once(__DIR__.'\..\helpers\ProjectValidator.php');
 
-$taskManager = DataFactory::createTaskManager();
-$model = new CreateTaskViewModel();
-$taskValidator = new TaskValidator();
+$projectManager = DataFactory::createProjectManager();
+$model = new CreateProjectViewModel();
+$projectValidator = new ProjectValidator();
 
 if($_SERVER["REQUEST_METHOD"] == "GET")
 {
-$taskKey = $_GET["key"];
-$task = $taskManager->findTask($taskKey);
-$model = new CreateTaskViewModel($task->key, $task->name,$task->description,
-                           $task->projectKey, $task->parentKey);
+$projectKey = $_GET["key"];
+$project = $projectManager->findProject($projectKey);
+$model = new CreateProjectViewModel($project->key, $project->name, $project->description);
 
-Page::View($model, 'editTask');
+Page::View($model, 'editProject');
 }
 else if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $model->fromArray(Page::modifyAllInputs($_POST));
@@ -29,13 +28,13 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $newTask = $model->convertToTask();
         $result = $taskManager->editTask($newTask);
         if (strcasecmp($result, "success. affected 1 entries") == 0) {            
-           Page::Redirect('/Pages/allTasks.php');
+           Page::Redirect('/Pages/allProjects.php');
         }
         array_push($errors, 'Task was not updated! Please try again!');
         $model->errors = json_encode($errors);
     }
 }
 
-Page::View($model, 'editTask');
+Page::View($model, 'editProject');
 
 ?>

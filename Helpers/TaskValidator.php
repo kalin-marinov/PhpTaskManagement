@@ -4,13 +4,13 @@
 
 class TaskValidator
 {
-    public function validate(TaskViewModel $model) : array
+    public function validate(CreateTaskViewModel $model) : array
     {
         $errors = array();
 
         if(empty($model->taskKey))
             array_push($errors, 'The task key is mandatory field!');
-        if(empty($model->projectKey))
+        if(empty($model->selectedKey))
             array_push($errors, 'The task should be part of a project!');
         if (empty($model->taskName))
             array_push($errors, 'The task name should be added!');

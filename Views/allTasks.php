@@ -29,10 +29,10 @@ if (isset($_MODEL))  $model = $_MODEL;
       </thead>
       <tbody>
         <?php
-foreach ($model as $task) { ?>
-          <tr>
-            <td>
-              <?=$task->projectKey?>
+        foreach ($model as $task) { ?>
+                  <tr>
+                    <td>
+                      <?=$task->projectKey?>
             </td>
             <td>
               <a href="task.php?key=<?=$task->key?>">
@@ -46,10 +46,10 @@ foreach ($model as $task) { ?>
               <?=$task->description?>
             </td>
             <td>
-              <a href="#"> Edit </a>
+              <a href="editTask.php?key=<?=$task->key?>"> Edit </a>
             </td>
             <td>
-              <a href="#"> Delete </a>
+              <a href="deleteTask.php?key=<?=$task->key?>"> Delete </a>
             </td>
           </tr>
           <?php } ?>

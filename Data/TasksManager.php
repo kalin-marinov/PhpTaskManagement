@@ -64,7 +64,8 @@ class TasksManager extends ProviderBase
     **/
     public function addTask(Task $task) : string
     {
-        $params = $task->toArray();
+        $params = array('key'=> $task->key, 'name'=> $task->name, 'description' => $task->description,
+                        'parentKey'=> $task->parentKey, 'projectKey'=> $task->projectKey);
         return $this->executeNonQuery("INSERT INTO Tasks 
            VALUES (:key, :name, :description, :parentKey, :projectKey)", $params);
     }
@@ -77,8 +78,8 @@ class TasksManager extends ProviderBase
     {
        $params = array('name' => $task->name , 'description' => $task->description,
                          'key'=> $task->key);
-        return $this->executeNonQuery("UPDATE Tasks SET 
-           Tasks.name=:name, Tasks.description=:description WHERE Tasks.Key = :key", $params);
+        return $this->executeNonQuery("UPDATE tasks SET 
+           tasks.name = :name, tasks.description = :description WHERE tasks.key = :key", $params);
     }
     
     

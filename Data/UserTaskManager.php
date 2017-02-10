@@ -53,8 +53,9 @@ class UserTaskManager extends ProviderBase
     **/
     public function unAssignUser(string $userName, string $taskKey) : string
     {
-        $userId =  $this->executeQuery('SELECT id FROM users WHERE username=:name', array(name => $userName))[0];
-        return $this->executeNonQuery("DELETE FROM usertasks where taskKey = :taskKey and userId = :userId", array(taskKey => $taskKey, userId => $userId));
+        $userId =  $this->executeQuery('SELECT id FROM users WHERE username=:name', array("name" => $userName))[0]["id"];
+        return $this->executeNonQuery("DELETE FROM usertasks WHERE usertasks.taskkey = :taskKey and usertasks.userId = :userId",
+             array("taskKey" => $taskKey, "userId" => $userId));
     }
 
       /**

@@ -52,7 +52,7 @@ class ProjectManager extends ProviderBase
     public function editProjectDescription(string $projectKey, string $newDescription) : string
     {
         return $this->executeNonQuery("UPDATE projects SET 
-           projects.description=:description WHERE projects.key = :key ", array(key => $projectKey, description => $newDescription));
+           projects.description=:description WHERE projects.key = :key ", array("key" => $projectKey, "description" => $newDescription));
     }
     
     

@@ -10,6 +10,7 @@ $taskManager = DataFactory::createTaskManager();
 $model = new CreateTaskViewModel();
 $taskValidator = new TaskValidator();
 $userManager = DataFactory::createUserManager();
+$userTaskManager = DataFactory::createUserTaskManager();
 
 if($_SERVER["REQUEST_METHOD"] == "GET")
 {
@@ -27,6 +28,7 @@ if($_SERVER["REQUEST_METHOD"] == "GET")
 else if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $model->fromArray(Page::modifyAllInputs($_POST));
     $errors = $taskValidator->validate($model);
+    $currentState = $taskManager->findTask($model->taskKey);
     
     if (count($errors) > 0) {
         $model->errors = json_encode($errors);
@@ -35,6 +37,13 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $result = $taskManager->editTask($newTask);
         
         if (strcasecmp($result, "success. affected 1 entries") == 0) {
+            // Re-assign the user
+            if(isset($currentState->userId) && $currentState->userId != null){
+                $currentUser = $userManager->findById($currentState->userId)->username;
+                $userTaskManager->unAssignUser($currentUser,  $model->taskKey);
+                $userTaskManager->assignTask($model->selectedUser,  $model->taskKey);
+            }
+            
             Page::Redirect('/Pages/allTasks.php');
         }
         array_push($errors, 'Task was not updated! Please try again!');

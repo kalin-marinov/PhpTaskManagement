@@ -9,6 +9,7 @@ require_once(__DIR__.'\..\helpers\TaskValidator.php');
 $taskManager = DataFactory::createTaskManager();
 $model = new CreateTaskViewModel();
 $taskValidator = new TaskValidator();
+$userManager = DataFactory::createUserManager();
 
 if($_SERVER["REQUEST_METHOD"] == "GET")
 {
@@ -16,7 +17,11 @@ if($_SERVER["REQUEST_METHOD"] == "GET")
     $task = $taskManager->findTask($taskKey);
     $model = new CreateTaskViewModel($task->key, $task->name,$task->description,
     $task->projectKey, $task->parentKey);
+    $model->users = $userManager->getAll();
     
+    if(isset($task->userId) && $task->userId != null){
+        $model->selectedUser = $userManager->findById($task->userId)->username;
+    }
     Page::View($model, 'editTask');
 }
 else if ($_SERVER["REQUEST_METHOD"] == "POST") {

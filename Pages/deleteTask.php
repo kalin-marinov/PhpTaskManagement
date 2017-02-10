@@ -8,8 +8,5 @@ require_once(__DIR__.'\..\ViewModels\TaskViewModel.php');
 $taskManager = DataFactory::createTaskManager();
 $taskKey = $_GET["key"];
 $result = $taskManager->removeTask($taskKey);
-
-  if (strcasecmp($result, "success. affected 1 entries") == 0) {
       Page::Redirect("allTasks.php");
-  }
 ?>

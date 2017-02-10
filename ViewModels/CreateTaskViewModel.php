@@ -2,7 +2,7 @@
 
 require_once(__DIR__.'/../Data/Models/ModelBase.php');
 
-class TaskViewModel extends ModelBase {
+class CreateTaskViewModel extends ModelBase {
     
     /**
     * @var string $taskKey task key */
@@ -26,19 +26,18 @@ class TaskViewModel extends ModelBase {
     
     /**
     * List of errors that occured during registration
-    * @var array $comments array of comments */
-    public $comments;  
-
-     function __construct(string $taskKey = null, string $taskName = null, 
-     string $taskDescription = null, string $projectKey = null, 
-     string $parentKey = null, array $comments =null){
-        $this->taskKey = $taskKey;
-        $this->taskName = $taskName;
-        $this->taskDescription = $taskDescription;
-        $this->parentKey = $parentKey;
-        $this->projectKey = $projectKey;
-        $this->comments = $comments;
+    * @var array $erros errors */
+    public $errors;
+    
+    /**
+    * @return Task
+    */
+    public function convertToTask() : Task {
+        
+        return new Task($this->taskKey,$this->taskName,
+        $this->taskDescription, $this->projectKey, $this->parentKey);
     }
+    
 }
 
 ?>

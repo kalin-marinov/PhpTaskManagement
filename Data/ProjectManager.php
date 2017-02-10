@@ -62,7 +62,7 @@ class ProjectManager extends ProviderBase
     * @param string $projectKey the key of the task
     * @return string
     **/
-    public function removeProjcet(string $projectKey) : string
+    public function removeProject(string $projectKey) : string
     {
         return $this->executeNonQuery("DELETE FROM projects WHERE key = :key", array('key' => $projectKey));
     }

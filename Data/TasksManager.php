@@ -1,6 +1,7 @@
 <?php
 
 require_once(__DIR__.'\ProviderBase.php');
+require_once(__DIR__.'\models\Task.php');
 
 class TasksManager extends ProviderBase
 {
@@ -22,7 +23,26 @@ class TasksManager extends ProviderBase
         return $this->mapTasks($this->executeQuery("SELECT * FROM tasks"));
     }
 
+    /**
+    * Returns array of tasks assign on the given project
+    * @return Task[]
+    **/
+    public function getAllTasks(string $projectKey) : array
+    {
+        try{
+            $param = array('projectKey' => $projectKey);
+            return $this->mapTasks($this->executeQuery("SELECT * FROM tasks where tasks.projectKey = :projectKey", $param));
+        } catch(Exception $err){
+            return null;
+        }
+    }
     
+
+    
+     /**
+    * Returns a Task with given task key
+    * @return Task
+    **/
     public function findTask(string $key) : Task
     {
         try{

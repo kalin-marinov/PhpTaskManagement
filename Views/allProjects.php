@@ -17,7 +17,7 @@ if (isset($_MODEL)) {
     <?php
     foreach ($model as $proj) { ?>
          <tr>
-            <td> <?=$proj->key?> </td>
+            <td><a href="project.php?key=<?=$proj->key?>"> <?=$proj->key?> </a></td>
             <td> <?=$proj->name?> </td>
             <td> <?=$proj->description?> </td>
         </tr>

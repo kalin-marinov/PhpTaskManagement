@@ -17,15 +17,26 @@ if (isset($_MODEL)) {
     <textarea rows="4" cols="50" name="taskDescription" value="<?=$model->taskDescription?>">
     </textarea>
 
-    <label class="required" for="selectedKey">Project Key</label>
-    <select name="selectedKey" >
-    <?php foreach($model->projectKeys as $key) { ?>
-      <option value="<?=$key->key?>"><?=$key->key?></option>
-    <?php } ?>
-   </select> 
+    <label class="required" for="selectedKey">Project</label>
+    <select name="selectedKey">
+      <?php foreach($model->projectKeys as $key) { ?>
+        <option value="<?=$key->key?>">
+          <?=$key->key?>
+        </option>
+        <?php } ?>
+    </select>
+
+    <label class="required" for="selectedKey">User</label>
+    <select name="selectedUser">
+      <?php foreach($model->projectKeys as $key) { ?>
+        <option value="<?=$key->key?>">
+          <?=$key->key?>
+        </option>
+        <?php } ?>
+    </select>
 
     <input type="submit" value="Create" />
     <p>
-        <?= $model->errors ?>
+      <?= $model->errors ?>
     </p>
   </form>

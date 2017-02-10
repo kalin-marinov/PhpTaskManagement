@@ -189,6 +189,14 @@ form textarea {
     height: 200px;
 }
 
+form select{
+        padding: 15px 15px;
+    margin: 3px 0px 20px 0px;
+    display: block;
+    width: 100%;
+    font-size: 1.2em;
+}
+
 form input[type="email"]:focus,
 form input[type="password"]:focus,
 form input[type="text"]:focus,

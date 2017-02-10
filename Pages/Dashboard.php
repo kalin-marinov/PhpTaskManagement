@@ -1,5 +1,6 @@
 <?php
-session_start();
+require_once(__DIR__.'/../helpers/common.php');
+Page::Authorize();
 
-include('..\Views\Layout.php');
+Page::View();
 ?>

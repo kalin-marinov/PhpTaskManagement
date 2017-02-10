@@ -1,6 +1,8 @@
 <?php
 
-    class LoginViewModel extends ViewModelBase { 
+    require_once(__DIR__.'/../Data/Models/ModelBase.php');
+
+    class LoginViewModel extends ModelBase{ 
         
         /**
         * @var string $userName username */

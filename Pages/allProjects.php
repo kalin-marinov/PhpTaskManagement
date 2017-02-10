@@ -1,8 +1,9 @@
 <?php
+require_once(__DIR__.'\..\helpers\common.php');
+Page::Authorize();
 
-    session_start();
-    require_once(__DIR__.'\..\factories\DataFactory.php');
+require_once(__DIR__.'\..\factories\DataFactory.php');
 
-     $projectManager = DataFactory::createProjectManager();
-     $allProjects = $projectManager->getProjects();
+$projectManager = DataFactory::createProjectManager();
+$allProjects = $projectManager->getProjects();
 ?>

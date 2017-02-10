@@ -1,5 +1,10 @@
 <?php
+require_once(__DIR__.'/helpers/common.php');
+Page::Authorize();
+Page::Redirect('/pages/dashboard.php');
 
+
+// Testing stuff:
 require_once('data\TasksManager.php');
 require_once('data\UserManager.php');
 require_once('factories\ConnectionFactory.php');

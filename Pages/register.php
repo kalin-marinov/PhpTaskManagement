@@ -5,7 +5,6 @@ require_once(__DIR__.'\..\ViewModels\RegisterViewModel.php');
 require_once(__DIR__.'\..\helpers\RegisterValidator.php');
 
 $userProvider = DataFactory::createUserManager();
-
 $validator = new RegisterValidator();
 $model = new RegisterViewModel();
 
@@ -28,6 +27,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         $model->errors = json_encode($errors);
     }
 }
- Page::View($model, 'loginLayout');
+ Page::View($model, 'register', 'loginLayout');
 
 ?>

@@ -1,9 +1,10 @@
 <?php
-session_start();
-require_once(__DIR__.'\..\factories\DataFactory.php');
-require_once(__DIR__.'\..\helpers\ProjectValidator.php');
-require_once(__DIR__.'\..\helpers\common.php');
-require_once(__DIR__.'\..\data\models\Project.php');
+require_once(__DIR__.'/../helpers/common.php');
+Page::Authorize();
+
+require_once(__DIR__.'/../factories/DataFactory.php');
+require_once(__DIR__.'/../helpers/ProjectValidator.php');
+require_once(__DIR__.'/../data/models/Project.php');
 
 $projectManager = DataFactory::createProjectManager();
 $projectValidator = new ProjectValidator();

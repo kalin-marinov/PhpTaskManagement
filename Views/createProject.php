@@ -1,11 +1,9 @@
 <?php
-  $model = new ProjectViewModel();
-if (isset($_MODEL)) {
-    $model = $_MODEL;
-}
+$model = new CreateProjectViewModel();
+if (isset($_MODEL)) $model = $_MODEL;
 ?>
 
-<form action="/Pages/CreateProject.php/" method="POST">
+  <form action="/Pages/CreateProject.php/" method="POST">
 
     <label name="projectKey">Project Key</label>
     <input type="text" name="projectKey" value="<?=$model->projectKey?>" required />
@@ -18,5 +16,7 @@ if (isset($_MODEL)) {
     </textarea>
 
     <input type="submit" value="Create" />
-    <p> <?= $model->errors ?> </p>
-</form>
+    <p>
+      <?= $model->errors ?>
+    </p>
+  </form>

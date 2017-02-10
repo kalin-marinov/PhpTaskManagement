@@ -29,10 +29,10 @@ if (isset($_MODEL))  $model = $_MODEL;
       </thead>
       <tbody>
         <?php
-        foreach ($model as $task) { ?>
-                  <tr>
-                    <td>
-                      <?=$task->projectKey?>
+foreach ($model as $task) { ?>
+          <tr>
+            <td>
+              <?=$task->projectKey?>
             </td>
             <td>
               <a href="task.php?key=<?=$task->key?>">
@@ -59,5 +59,5 @@ if (isset($_MODEL))  $model = $_MODEL;
     <a class="btn-white" href="/pages/CreateTask.php"> Create New </a>
 
     <p> Unable to find the task you are looking for? </p>
-    <p> <a href="/pages/allprojects.php" > Try searching by project instead </a>
+    <p> <a href="/pages/allprojects.php"> Try searching by project instead </a>
   </div>

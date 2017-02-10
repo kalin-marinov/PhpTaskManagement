@@ -23,6 +23,19 @@ class UserManager extends ProviderBase
         return $this->executeNonQuery("INSERT INTO Users VALUES (0, :username, :passwordHash, :fullName, :email)", $params);
     }
     
+    public function getUserId(string $username) : int{
+        $id = $this->executeQuery("SELECT id FROM Users WHERE username = :name", array("name" => $username));
+        return $id[0]['id'];
+    }
+    
+    
+    public function findById(int $userId) : User {
+        $users = $this->executeQuery("SELECT * FROM Users WHERE Users.id = :id)", array("id" => $userId));
+        $user = new User();
+        return $user->fromArray($users[0]);
+    }
+
+    
     public function verifyCredentials(string $username, string $password) : bool
     {
         $result = $this->executeQuery("SELECT passwordHash FROM Users where Users.username = :name)", array("name" => $username));
@@ -64,7 +77,7 @@ class UserManager extends ProviderBase
         $_SESSION['user'] = $user;
         $_SESSION['isLoggedIn'] = true;
     }
-
+    
     private function convertToUser(&$object)
     {
         if (!is_object ($object) && gettype ($object) == 'object') {

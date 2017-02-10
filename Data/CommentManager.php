@@ -1,6 +1,7 @@
 <?php
 
 require_once(__DIR__.'\ProviderBase.php');
+require_once(__DIR__.'\..\Data\Models\Comment.php');
 
 class CommentManager extends ProviderBase
 {
@@ -19,7 +20,10 @@ class CommentManager extends ProviderBase
     **/
     public function getComments(string $taskKey) : array
     {
-        return $this->mapComments($this->executeQuery("SELECT * FROM comments where  "));
+        return $this->mapComments($this->executeQuery(
+        "SELECT c.*, u.username FROM comments c 
+         JOIN users u on u.id = c.userId
+         where c.taskkey = :key", array("key" => $taskKey)));
     }
         
     
@@ -29,9 +33,9 @@ class CommentManager extends ProviderBase
     **/
     public function addComment(Comment $comment) : string
     {
-        $params = $comment->toArray();
-        return $this->executeNonQuery("INSERT INTO comments (userID, taskKey,description)
-           VALUES (:userID, :taskKey, :description)", $params);
+        $params = array("userId" => $comment->userId, "taskKey" => $comment->taskkey, "descr" => $comment->description);
+        return $this->executeNonQuery("INSERT INTO comments (userId, taskkey,description)
+           VALUES (:userId, :taskKey, :descr)", $params);
     }
     
     /**

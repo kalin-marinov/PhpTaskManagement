@@ -47,8 +47,9 @@ body {
     overflow-y: auto;
 }
 
-.white-board .centered {
+.content.centered {
     width: 60%;
+    margin-top:50px;
 }
 
 .btn-white {
@@ -134,7 +135,7 @@ table a {
 }
 
 h2 {
-    padding: 20px;
+    padding: 20px 5px;
     color: #ecf0f1;
 }
 
@@ -169,7 +170,7 @@ form.centered h1 {
 form input[type="email"],
 form input[type="password"],
 form input[type="text"],
-form textarea,
+textarea,
 from select option {
     padding: 25px 15px;
     margin: 3px 0px 20px 0px;
@@ -275,10 +276,61 @@ dd, dt{
     margin:20px 40px;
 }
 
-.text-box{
-    padding: 50px;
+.item-description{
+    padding: 10px;
     background-color: white;
     color: black;
     margin-bottom: 50px;
     border: 3px solid #2f2f2f;
+    height: 300px;
+}
+
+
+.description-header{
+    margin-top:30px;
+    background-color: #16212b;
+    padding:20px;
+}
+
+.details-table{
+   box-shadow: initial;
+   width:50%;
+   border:none;
+   font-family: 'Fira Sans', sans-serif
+}
+
+.details-table tr,
+.details-table tr:nth-child(2n){
+        background-color: initial;
+        color:white;
+        border-bottom: 1px solid #eff2f4;
+}
+
+.details-table th:first-child,
+.details-table td:first-child{
+   width:40%;
+}
+
+
+.post-comment{
+    margin-top:20px;
+}
+
+.post-comment textarea{
+    height:150px;
+    margin-bottom: 5px;
+}
+
+.comment{
+    padding: 20px 0px;
+    border-bottom: 1px solid lightgray;
+}
+
+.comment i{
+    font-size: 0.75em;
+  
+}
+
+.comment p{
+  margin-top: 20px;
 }

@@ -1,6 +1,6 @@
 <?php
 
-require_once(_DIR_.'\..\..\..\data\models\ModelBase.php');
+require_once(__DIR__.'\ModelBase.php');
 
 class Comment extends ModelBase{
     
@@ -17,6 +17,12 @@ class Comment extends ModelBase{
     * @var string
     **/
     public $userId;
+
+    /**
+    * User name - the name of the user that matches the id
+    * @var string
+    **/
+    public $username;
     
     /**
     * task name

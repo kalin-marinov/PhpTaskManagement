@@ -5,9 +5,8 @@ if (isset($_MODEL))  $model = $_MODEL;
 
   <div class="content centered">
     <h1> Task: <?=$model->taskName ?> </h1>
-    <hr />
 
-    <table>
+    <table class="details-table">
       <tr>
         <td> Project: </td>
         <td>
@@ -20,35 +19,49 @@ if (isset($_MODEL))  $model = $_MODEL;
           <?=$model->taskKey?>
         </td>
       </tr>
-
+      <tr>
+        <td>Assigned User: </td>
+        <td>
+          <?=$model->parentKey?>
+        </td>
+      </tr>
     </table>
 
-    <hr>
-    <h2> Description: </h2>
-    <p class="text-box">
+    <h2 class="description-header"> Description: </h2>
+    <p class="item-description">
       <?=$model->taskDescription ?>
     </p>
 
 
+    <h2> Comments: </h2>
+    <hr>
+    <section id="comments">
+            <?php
+              if(count($model->comments) > 0)
+              {
+                  foreach($model->comments as $comm){ ?>
+                      <div class="comment">
+                        <img src="https://t4.ftcdn.net/jpg/01/07/85/89/240_F_107858989_SJogeLthvc6WZ6lP6EsuLlxIRNtsz4JH.jpg" width="64" height="64" class="fix-left" />
+                        <div class="comment-body">
 
-    <div class="white-board">
+                        <h3> <?= $comm->username ?> </h3>
+                        <i> <?= $comm->time?> </i>
+                        <p> <?= $comm->description ?> </p>      
+                        </div>             
+                      </div>
+                      <?php }
+              }
+              else {?>
+                        <p> No comments on this task at the moment. </p>
+                <?php }?>
+    </section>
 
-      <h3> Comments: </h3>
-      <?php
-if(count($model->comments) > 0)
-{
-    foreach($model->comments as $comm){ ?>
-        <p>
-          Comment from user:
-          <?=$comm->userId?> at
-            <?=$comm->time?>
-              <br/>
-              <?=$comm->description ?>
-        </p>
-        <?php }
-}
-else {?>
-          <p> No comments on this task at the moment. </p>
-          <?php }?>
+    <div class="post-comment" data-task-key=" <?=$model->taskKey?>">
+      <h3> Post a comment </h3>
+      <textarea rows="5" cols="40" placeholder="your comment"></textarea>
+      <button class="btn-white"> Add Comment </button>
     </div>
+
+
+
   </div>

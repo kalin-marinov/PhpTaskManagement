@@ -3,6 +3,7 @@ require_once(__DIR__.'\..\data\TasksManager.php');
 require_once(__DIR__.'\..\data\UserManager.php');
 require_once(__DIR__.'\..\data\UserTaskManager.php');
 require_once(__DIR__.'\..\data\ProjectManager.php');
+require_once(__DIR__.'\..\data\CommentManager.php');
 require_once(__DIR__.'\..\factories\ConnectionFactory.php');
 
 class DataFactory{
@@ -29,6 +30,13 @@ class DataFactory{
     public static function createUserTaskManager() : UserTaskManager {
         $connection = ConnectionFactory::create();
         $manager = new UserTaskManager($connection);
+
+        return  $manager;
+    }
+
+     public static function createCommentManager() : CommentManager {
+        $connection = ConnectionFactory::create();
+        $manager = new CommentManager($connection);
 
         return  $manager;
     }

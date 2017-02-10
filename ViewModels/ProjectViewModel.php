@@ -26,8 +26,8 @@ class CreateProjectViewModel extends ModelBase {
     */
     public function convertToProject() : Project
     {
-        $newTask = new Task($this->taskKey,$this->taskName,
-        $this->taskDescription, $this->projectKey, $this->parentKey);
+        return  new Project($this->projectKey,$this->projectName,
+        $this->projectDescription);
     }
 }
 

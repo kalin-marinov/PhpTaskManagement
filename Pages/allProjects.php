@@ -6,4 +6,7 @@ require_once(__DIR__.'\..\factories\DataFactory.php');
 
 $projectManager = DataFactory::createProjectManager();
 $allProjects = $projectManager->getProjects();
+
+Page::View($allProjects, 'allProjects');
+
 ?>

@@ -49,11 +49,11 @@ class Page{
     
     
     public static function PrepareViewPath(string $viewPath = null) :string {
-        if(strpos($viewPath, "Views") == false){
-            $viewPath = __DIR__."/../Views/{$viewPath}";
+        if(strpos($viewPath, 'Views') == false){
+            $viewPath = __DIR__.'/../Views/'.$viewPath;
         }
-        if(strpos($viewPath, ".php") == false){
-            $viewPath = "{$viewPath}.php";
+        if(strpos($viewPath, '.php') == false){
+            $viewPath = $viewPath.'.php';
         }
         return  $viewPath;
     }

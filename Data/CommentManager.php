@@ -1,11 +1,11 @@
 <?php
 
-require_once(_DIR_.'\..\..\data\ProviderBase.php');
+require_once(__DIR__.'\ProviderBase.php');
 
-class ProjectManager extends ProviderBase
+class CommentManager extends ProviderBase
 {
     /**
-    * Constructs a new TaskDataProvider
+    * Constructs a new CommentManager
     * @param PDO $connection - MySQL connection
     */
     function __construct(PDO $connection)
@@ -14,7 +14,7 @@ class ProjectManager extends ProviderBase
     }
     
     /**
-    * Returns an array of projects containing all projects stored
+    * Returns an array of comment for given task key
     * @return Comment[]
     **/
     public function getComments(string $taskKey) : array
@@ -24,19 +24,18 @@ class ProjectManager extends ProviderBase
         
     
     /**
-    * Adds a new task to the database. If the key already exists,
-    * the database will not be modified
+    * Adds a new comment to the database. 
     * @return string
     **/
-    public function addComment(Comment $project) : string
+    public function addComment(Comment $comment) : string
     {
-        $params = $project->toArray();
-        return $this->executeNonQuery("INSERT INTO projects 
-           VALUES (:key, :name, :description)", $params);
+        $params = $comment->toArray();
+        return $this->executeNonQuery("INSERT INTO comments (userID, taskKey,description)
+           VALUES (:userID, :taskKey, :description)", $params);
     }
     
     /**
-    * Edits an existing database task
+    * Edits an existing comment on exsting task
     * @return string
     **/
     public function editComment(int $commentId, string $newDescription) : string
@@ -46,8 +45,8 @@ class ProjectManager extends ProviderBase
     }
     
     /**
-    * Removes a task by given task key
-    * @param string $projectKey the key of the task
+    * Removes a comment by given commentId
+    * @param string $commentId the id of the comment
     * @return string
     **/
     public function removeComment(string $commentId) : string
@@ -56,7 +55,7 @@ class ProjectManager extends ProviderBase
     }
     
     /**
-    * Returns an array of Projects from array of arrays
+    * Returns an array of comments from array of arrays
     * @return Comment[]
     **/
     private function mapComments(array $arr) : array{

@@ -33,6 +33,7 @@ class CreateTaskViewModel extends ModelBase {
     * @return Task
     */
     public function convertToTask() : Task {
+        
         return new Task($this->taskKey,$this->taskName,
         $this->taskDescription, $this->projectKey, $this->parentKey);
     }

@@ -9,8 +9,8 @@ class CreateTaskViewModel extends ModelBase {
     public $taskKey;
     
     /**
-    * @var string $projectKey project key */
-    public $projectKey;
+    * @var array $projectKeys project keys */
+    public $projectKeys;
     
     /**
     * @var string $taskName task name */
@@ -32,10 +32,10 @@ class CreateTaskViewModel extends ModelBase {
     /**
     * @return Task
     */
-    public function convertToTask() : Task {
+    public function convertToTask($projectKey) : Task {
         
         return new Task($this->taskKey,$this->taskName,
-        $this->taskDescription, $this->projectKey, $this->parentKey);
+        $this->taskDescription, $projectKey, $this->parentKey);
     }
     
 }

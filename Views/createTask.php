@@ -1,6 +1,8 @@
 <?php
 $model = new CreateTaskViewModel();
-if (isset($_MODEL)) $model = $_MODEL;
+if (isset($_MODEL)) {
+    $model = $_MODEL;
+}
 ?>
 
   <form id="task-form" action="/Pages/CreateTask.php/" method="POST" class="centered">
@@ -16,10 +18,14 @@ if (isset($_MODEL)) $model = $_MODEL;
     </textarea>
 
     <label class="required" for="projectKey">Project Key</label>
-    <input type="text" name="projectKey" value="<?=$model->projectKey?>" />
+    <select name="projectKey[]" >
+    <?php foreach($model->projectKeys as $key) { ?>
+      <option value="<?=$key->key?>"><?=$key->key?></option>
+    <?php } ?>
+   </select> 
 
     <input type="submit" value="Create" />
     <p>
-      <?= $model->errors ?>
+        <?= $model->errors ?>
     </p>
   </form>

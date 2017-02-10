@@ -49,7 +49,7 @@ class TasksManager extends ProviderBase
             $param = array('key' => $key);
             return $this->mapTasks($this->executeQuery(
             "SELECT * FROM tasks t 
-             JOIN usertasks ut on ut.taskkey = t.key
+             LEFT JOIN usertasks ut on ut.taskkey = t.key
              WHERE t.key = :key", $param))[0];
         } catch(Exception $err){
             return null;

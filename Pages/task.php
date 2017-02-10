@@ -15,11 +15,8 @@ $comments = $commentManager->getComments($taskKey);
 $model = new TaskViewModel($task->key, $task->name,$task->description,
 $task->projectKey, $task->parentKey, $comments);
 
-try{
+if(isset($task->userId) && $task->userId != null){
     $model->user = $userManager->findById($task->userId)->username;
-}
-catch(Exception $ex){ 
-    $model->user = "N/A";
 }
 
 Page::View($model, 'task');

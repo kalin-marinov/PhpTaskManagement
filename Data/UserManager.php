@@ -29,7 +29,7 @@ class UserManager extends ProviderBase
     }
     
     
-    public function findById(int $userId) : User {
+    public function findById(int $userId = null) : User {
         $users = $this->executeQuery("SELECT u.* FROM Users u WHERE u.id = :id", array("id" => $userId));
         $user = new User();
         $user->fromArray($users[0]);

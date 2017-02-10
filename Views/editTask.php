@@ -25,13 +25,13 @@ if (isset($_MODEL)) {
           <?=$model->selectedKey?>
         </option>
       </select>
+      
 
-
-      <label class="required" for="selectedKey">Project Key</label>
-      <select name="selectedKey" disabled>
-        <option value="<?=$model->selectedKey?>">
-          <?=$model->selectedKey?>
-        </option>
+       <label class="required" for="selectedKey">User</label>
+      <select name="selectedUser" readonly>       
+          <option value="<?=$model->selectedUser?>">
+            <?=$model->selectedUser?>
+          </option>
       </select>
 
       <input type="submit" value="Update" />

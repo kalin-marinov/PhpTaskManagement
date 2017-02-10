@@ -10,6 +10,6 @@ $taskKey = $_GET["key"];
 $result = $taskManager->removeTask($taskKey);
 
   if (strcasecmp($result, "success. affected 1 entries") == 0) {
-    Page::View('Project with key '.$taskKey. ' deleted!', 'succsess');
+      Page::Redirect("allTasks.php");
   }
 ?>

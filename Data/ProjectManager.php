@@ -52,7 +52,7 @@ class ProjectManager extends ProviderBase
     public function editProjectDescription(string $projectKey, string $newDescription) : string
     {
         return $this->executeNonQuery("UPDATE projects SET 
-           description=:description WHERE key = :key ", array(key => $projectKey, description => $newDescription));
+           projects.description=:description WHERE projects.key = :key ", array(key => $projectKey, description => $newDescription));
     }
     
     
@@ -63,7 +63,7 @@ class ProjectManager extends ProviderBase
     **/
     public function removeProject(string $projectKey) : string
     {
-        return $this->executeNonQuery("DELETE FROM projects WHERE key = :key", array('key' => $projectKey));
+        return $this->executeNonQuery("DELETE FROM projects WHERE projects.key = :key", array('key' => $projectKey));
     }
     
     /**

@@ -37,7 +37,9 @@ body {
 }
 
 #task-form{
-    width:900px;
+    width:60%;
+    padding:40px 80px;
+    height: 100vh;
 }
 
 .nav a:hover{

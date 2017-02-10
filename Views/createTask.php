@@ -3,7 +3,8 @@ $model = new CreateTaskViewModel();
 if (isset($_MODEL)) $model = $_MODEL;
 ?>
 
-  <form id="task-form" action="/Pages/CreateTask.php/" method="POST" class="centered top-spaced">
+  <form id="task-form" action="/Pages/CreateTask.php/" method="POST" class="centered">
+    <h1> Create new Task </h1>
     <label class="required" for="taskKey">Taks Key</label>
     <input type="text" name="taskKey" value="<?=$model->taskKey?>" />
 

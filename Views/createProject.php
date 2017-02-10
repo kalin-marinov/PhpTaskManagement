@@ -4,6 +4,7 @@ if (isset($_MODEL)) $model = $_MODEL;
 ?>
 
   <form id="taskForm" action="/Pages/CreateProject.php/" method="POST" class="centered top-spaced">
+    <h1> Create new project </h1>
 
     <label class="required" for="projectKey">Project Key</label>
     <input type="text" name="projectKey" value="<?=$model->projectKey?>" required />

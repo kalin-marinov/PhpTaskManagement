@@ -16,6 +16,9 @@ if($_SERVER["REQUEST_METHOD"] == "GET")
 {
     $taskKey = $_GET["key"];
     $task = $taskManager->findTask($taskKey);
+    if(isset($task->userId) && $task->userId != null){
+    $model->selectedUser = $userManager->findById($task->userId)->username;
+}
     $model = new CreateTaskViewModel($task->key, $task->name,$task->description,
     $task->projectKey, $task->parentKey);
     $model->users = $userManager->getAll();

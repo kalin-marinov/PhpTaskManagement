@@ -16,7 +16,7 @@ $username = $userManager->getCurrentUser()->username;
   <body>
     <div class="nav" role="nav">
       <div class="centered">
-        <a href="/Pages/login.php">Dashboard</a> 
+        <a href="/Pages/dashboard.php">Dashboard</a> 
         <a href="/Pages/allProjects.php"> Projects</a> 
         <a href="/Pages/allTasks.php"> Tasks</a> 
         <a href="#"> User <?=$username?> </a>

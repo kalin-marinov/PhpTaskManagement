@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 require_once(__DIR__.'\..\factories\DataFactory.php');
 require_once(__DIR__.'\..\helpers\common.php');
 require_once(__DIR__.'\..\ViewModels\RegisterViewModel.php');
@@ -20,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         $result =  $userProvider->createUser($newUser, $model->password);
         
         if (strcasecmp($result, "success. affected 1 entries") == 0) {
-            Page::View(null, "registered");
+            Page::Redirect('/pages/dashboard.php');
         }
 
         array_push($errors, 'User already in use!');

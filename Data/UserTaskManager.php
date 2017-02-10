@@ -31,18 +31,18 @@ class UserTaskManager extends ProviderBase
     **/
     public function getTasksForUser(string $userName) : array
     {
-        return $this->executeQuery(
-        "SELECT u.username FROM usertasks ut
+        return $this->mapTasks($this->executeQuery(
+        "SELECT t.* FROM usertasks ut
          JOIN users u on u.Id = ut.userId
          JOIN tasks t on t.key = ut.taskKey
-         WHERE u.userName = :name", array(name => $userName));
+         WHERE u.userName = :name", array("name" => $userName)));
     }
     
     /** assigns a task to the given user */
     public function assignTask(string $userName, string $taskKey) : string
     {
-        $userId =  $this->executeQuery('SELECT id FROM users WHERE username=:name', array(name => $userName))[0];
-        return $this->executeNonQuery("INSERT INTO usertasks VALUES (:taskKey, :userId)", array(taskKey => $taskKey, userId => $userId));
+        $userId =  $this->executeQuery('SELECT id FROM users WHERE username=:name', array("name" => $userName))[0]['id'];
+        return $this->executeNonQuery("INSERT INTO usertasks VALUES (:taskKey, :userId)", array("taskKey" => $taskKey, "userId" => $userId));
     }
     
     
@@ -55,6 +55,20 @@ class UserTaskManager extends ProviderBase
     {
         $userId =  $this->executeQuery('SELECT id FROM users WHERE username=:name', array(name => $userName))[0];
         return $this->executeNonQuery("DELETE FROM usertasks where taskKey = :taskKey and userId = :userId", array(taskKey => $taskKey, userId => $userId));
+    }
+
+      /**
+    * Returns an array of Tasks from array of arrays
+    * @return Task[]
+    **/
+    private function mapTasks(array $arr) : array{
+        $mapFunc = function($el) {
+            $task = new Task();
+            $task->fromArray($el);
+            return $task;
+        };
+        
+        return array_map($mapFunc, $arr);
     }
 }
 

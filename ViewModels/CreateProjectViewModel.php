@@ -18,7 +18,7 @@ class CreateProjectViewModel extends ModelBase {
     
     /**
     * List of errors that occured during registration
-    * @var string $userName username */
+    * @var string $errors list of errors */
     public $errors;
     
     /**

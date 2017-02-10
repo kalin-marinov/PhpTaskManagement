@@ -20,17 +20,16 @@ Page::View($model, 'editProject');
 }
 else if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $model->fromArray(Page::modifyAllInputs($_POST));
-    $errors = $taskValidator->validate($model);
+    $errors = $projectValidator->validate($model);
     
     if (count($errors) > 0) {
         $model->errors = json_encode($errors);
     } else {
-        $newTask = $model->convertToTask();
-        $result = $taskManager->editTask($newTask);
+        $result = $projectManager->editProjectDescription($model->projectKey, $model->projectDescription);
         if (strcasecmp($result, "success. affected 1 entries") == 0) {            
            Page::Redirect('/Pages/allProjects.php');
         }
-        array_push($errors, 'Task was not updated! Please try again!');
+        array_push($errors, 'Project was not updated! Please try again!');
         $model->errors = json_encode($errors);
     }
 }

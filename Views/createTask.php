@@ -29,9 +29,9 @@ if (isset($_MODEL)) {
 
     <label class="required" for="selectedKey">User</label>
     <select name="selectedUser">
-      <?php foreach($model->projectKeys as $key) { ?>
-        <option value="<?=$key->key?>">
-          <?=$key->key?>
+      <?php foreach($model->users as $us) { ?>
+        <option value="<?=$us->username?>">
+          <?=$us->username?>
         </option>
         <?php } ?>
     </select>

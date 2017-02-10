@@ -9,7 +9,7 @@ if (isset($_MODEL))  $model = $_MODEL;
       <h1> A collection of all tasks </h1>
       <p> Your task are currently split into projects</p>
       <p> You may create new tasks and exists </p>
-      <p> Place a summary here - How many tasks, projects</p>
+      <p> Total amaunt of available tasks: <?=count($model) ?></p>
 
     </div>
   </div>

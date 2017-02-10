@@ -27,6 +27,14 @@ class CreateTaskViewModel extends ModelBase {
     /**
     * @var string $parentKey parent task key (it's used for subtasks) */
     public $parentKey;
+
+    /**
+    * @var array $users all available users */
+    public $users;
+
+     /**
+    * @var string $user selected user for the task */
+    public $user;
     
     /**
     * List of errors that occured during registration

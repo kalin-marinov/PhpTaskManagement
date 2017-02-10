@@ -10,11 +10,13 @@ require_once(__DIR__.'\..\ViewModels\CreateTaskViewModel.php');
 
 $taskManager = DataFactory::createTaskManager();
 $projectManager = DataFactory::createProjectManager();
+$userManager = DataFactory::createUserManager();
 $taskValidator = new TaskValidator();
 $projectValidator = new TaskValidator();
 $model = new CreateTaskViewModel();
 
 $model->projectKeys = $projectManager->getProjects();
+$model->users = $userManager->getAll();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $model->fromArray(Page::modifyAllInputs($_POST));

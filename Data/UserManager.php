@@ -22,7 +22,7 @@ class UserManager extends ProviderBase
         
         return $this->executeNonQuery("INSERT INTO Users VALUES (0, :username, :passwordHash, :fullName, :email)", $params);
     }
-    
+
     public function getUserId(string $username) : int{
         $id = $this->executeQuery("SELECT id FROM Users WHERE username = :name", array("name" => $username));
         return $id[0]['id'];
@@ -34,6 +34,17 @@ class UserManager extends ProviderBase
         $user = new User();
         return $user->fromArray($users[0]);
     }
+    /**
+    * Returns array of all users
+    * @return Task[]
+    **/
+      public function getAll() : array
+    {  
+        $all = $this->mapUsers($this->executeQuery("SELECT * FROM Users"));       
+            
+        return $all;
+    }
+    
 
     
     public function verifyCredentials(string $username, string $password) : bool
@@ -78,11 +89,26 @@ class UserManager extends ProviderBase
         $_SESSION['isLoggedIn'] = true;
     }
     
-    private function convertToUser(&$object)
+    public function convertToUser(&$object)
     {
         if (!is_object ($object) && gettype ($object) == 'object') {
             return ($object = unserialize (serialize ($object)));
         }
         return $object;
+    }
+
+      /**
+    * Returns an array of User from array of arrays
+    * @return User[]
+    **/
+    public function mapUsers(array $arr) : array
+    {
+        $mapFunc = function ($el) {
+            $pr = new User();
+            $pr->fromArray($el);
+            return $pr;
+        };
+        
+        return array_map($mapFunc, $arr);
     }
 }

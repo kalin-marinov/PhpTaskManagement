@@ -21,7 +21,7 @@
      * @param string $command the text of the command
      * @param array $parameters an associative array of parameters
      **/
-    protected function executeNonQuery(string $command, array $parameters) : string
+    public function executeNonQuery(string $command, array $parameters) : string
     {
         try {		
             $stmt = $this->conn->prepare($command);		
@@ -44,7 +44,7 @@
      * @param string $command the text of the command
      * @param array $parameters an associative array of parameters
      **/
-    protected function executeQuery(string $command, array $parameters = null) : array
+    public function executeQuery(string $command, array $parameters = null) : array
     {		
         $stmt = $this->conn->prepare($command);		
         

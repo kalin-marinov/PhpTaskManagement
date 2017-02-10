@@ -23,15 +23,13 @@ class ProjectManager extends ProviderBase
         return $this->mapProjects($this->executeQuery("SELECT * FROM projects"));
     }
     
-    public function findProject(string $key) : Project
+    public function findProject(string $key)
     {
-        try{
-            $param = array('key' => $key);
-            return $this->mapProjects($this->executeQuery(
-            "SELECT * FROM projects where key = :key", $param))[0];
-        } catch(Exception $err){
-            return null;
-        }
+        $param = array('key' => $key);
+        $query = $this->executeQuery("SELECT * FROM projects p WHERE p.key = :key", $param);
+        $mapped = $this->mapProjects($query);
+
+        return $mapped[0];
     }
     
     
@@ -54,7 +52,7 @@ class ProjectManager extends ProviderBase
     public function editProjectDescription(string $projectKey, string $newDescription) : string
     {
         return $this->executeNonQuery("UPDATE projects SET 
-           description=:description WHERE key = :key ", array(key => $project, description => $newDescription));
+           description=:description WHERE key = :key ", array(key => $projectKey, description => $newDescription));
     }
     
     
@@ -72,8 +70,9 @@ class ProjectManager extends ProviderBase
     * Returns an array of Projects from array of arrays
     * @return Project[]
     **/
-    private function mapProjects(array $arr) : array{
-        $mapFunc = function($el) {
+    public function mapProjects(array $arr) : array
+    {
+        $mapFunc = function ($el) {
             $pr = new Project();
             $pr->fromArray($el);
             return $pr;
@@ -82,5 +81,3 @@ class ProjectManager extends ProviderBase
         return array_map($mapFunc, $arr);
     }
 }
-
-?>

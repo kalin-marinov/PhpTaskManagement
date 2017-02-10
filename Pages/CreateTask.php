@@ -11,6 +11,7 @@ require_once(__DIR__.'\..\ViewModels\CreateTaskViewModel.php');
 $taskManager = DataFactory::createTaskManager();
 $projectManager = DataFactory::createProjectManager();
 $userManager = DataFactory::createUserManager();
+$taskuser = DataFactory::createUserTaskManager();
 $taskValidator = new TaskValidator();
 $projectValidator = new TaskValidator();
 $model = new CreateTaskViewModel();
@@ -25,8 +26,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (count($errors) > 0) {
         $model->errors = json_encode($errors);
     } else {
-        $newTask = $model->convertToTask();
+        $newTask = $model->convertToTask();      
         $result = $taskManager->addTask($newTask);
+        $asign = $taskuser->assignTask($model->selectedUser, $model->taskKey);
         if (strcasecmp($result, "success. affected 1 entries") == 0) {
              Page::Redirect('/Pages/allTasks.php');
         }

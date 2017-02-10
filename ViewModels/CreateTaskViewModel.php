@@ -34,7 +34,7 @@ class CreateTaskViewModel extends ModelBase {
 
      /**
     * @var string $user selected user for the task */
-    public $user;
+    public $selectedUser;
     
     /**
     * List of errors that occured during registration

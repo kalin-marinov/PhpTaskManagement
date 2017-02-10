@@ -1,6 +1,7 @@
 <?php
 
 require_once(__DIR__.'\ProviderBase.php');
+require_once(__DIR__.'\models\Project.php');
 
 class ProjectManager extends ProviderBase
 {
@@ -19,7 +20,7 @@ class ProjectManager extends ProviderBase
     **/
     public function getProjects() : array
     {
-        return $this->mapProjects($this->executeQuery("SELECT * FROM tasks"));
+        return $this->mapProjects($this->executeQuery("SELECT * FROM projects"));
     }
     
     public function findProject(string $key) : Project

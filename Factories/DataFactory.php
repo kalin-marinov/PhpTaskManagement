@@ -14,9 +14,9 @@ class DataFactory{
         return  $manager;
     }
 
-    public static function createTaskManager() : TaskManager {
+    public static function createTaskManager() : TasksManager {
         $connection = ConnectionFactory::create();
-        $manager = new TaskManager($connection);
+        $manager = new TasksManager($connection);
 
         return  $manager;
     }

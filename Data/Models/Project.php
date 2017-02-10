@@ -5,19 +5,19 @@ require_once(_DIR_.'\..\..\..\data\models\ModelBase.php');
 class Project extends ModelBase{
     
     /**
-    * Username - used for logging in
+    * Project key
     * @var string
     **/
     public $key;
     
     /**
-    * Full name
+    * Project name
     * @var string
     **/
     public $name;
     
     /**
-    * Email address of the user
+    * Project description
     * @var string
     **/
     public $description;

@@ -16,7 +16,7 @@ $username = $userManager->getCurrentUser()->username;
     <div id="regbar">
       <div id="navthing">
       <h2><a href="/Pages/login.php" >Dashboard</a> | <a href="/Pages/CreateProject.php" > Create Projects</a> | 
-      <a href="/Pages/CreateTask.php" >Create Tasks</a> | <a href="/Pages/CreateProject.php" > View Projects</a> | 
+      <a href="/Pages/CreateTask.php" >Create Tasks</a> | <a href="/Views/allProjects.php" > View Projects</a> | 
       <a href="/Pages/CreateTask.php" >View Tasks</a> |User logged: <?=$username?> | <a href="/Pages/Logout.php">Logout</a> </h2>
 
         <div class="body">

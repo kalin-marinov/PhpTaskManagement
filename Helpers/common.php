@@ -1,10 +1,14 @@
 <?php
 
+require_once(__DIR__.'/../factories/ConnectionFactory.php');
+
+
 class Page{
     
     public static function Redirect(string $url, bool $permanent = false)
     {
         header('Location: ' . $url, true, $permanent ? 301 : 302);
+        ConnectionFactory::closeConnetion();
         exit();
     }
     
@@ -28,12 +32,14 @@ class Page{
         } else {
             include(__DIR__.'\..\Views\layout.php'); // default $layout;
         }   
+        ConnectionFactory::closeConnetion();
         exit();
     }
     
     public static function Json(array $array){
         header('Content-type: application/json');
         echo json_encode($array);
+        ConnectionFactory::closeConnetion();
         exit();
     }
     

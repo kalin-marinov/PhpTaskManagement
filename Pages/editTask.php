@@ -17,8 +17,8 @@ if($_SERVER["REQUEST_METHOD"] == "GET")
     $taskKey = $_GET["key"];
     $task = $taskManager->findTask($taskKey);
     if(isset($task->userId) && $task->userId != null){
-    $model->selectedUser = $userManager->findById($task->userId)->username;
-}
+        $model->selectedUser = $userManager->findById($task->userId)->username;
+    }
     $model = new CreateTaskViewModel($task->key, $task->name,$task->description,
     $task->projectKey, $task->parentKey);
     $model->users = $userManager->getAll();
@@ -39,16 +39,15 @@ else if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $newTask = $model->convertToTask();
         $result = $taskManager->editTask($newTask);
         
-        if (strcasecmp($result, "success. affected 1 entries") == 0) {
-            // Re-assign the user
-            if(isset($currentState->userId) && $currentState->userId != null){
-                $currentUser = $userManager->findById($currentState->userId)->username;
-                $userTaskManager->unAssignUser($currentUser,  $model->taskKey);
-                $userTaskManager->assignTask($model->selectedUser,  $model->taskKey);
-            }
-            
-            Page::Redirect('/Pages/allTasks.php');
+        // Re-assign the user
+        if(isset($currentState->userId) && $currentState->userId != null){
+            $currentUser = $userManager->findById($currentState->userId)->username;
+            $userTaskManager->unAssignUser($currentUser,  $model->taskKey);
+            $userTaskManager->assignTask($model->selectedUser,  $model->taskKey);
         }
+        
+        Page::Redirect('/Pages/allTasks.php');
+        
         array_push($errors, 'Task was not updated! Please try again!');
         $model->errors = json_encode($errors);
     }

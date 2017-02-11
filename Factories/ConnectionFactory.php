@@ -1,10 +1,11 @@
 <?php
 
-class ConnectionFactory{
+class ConnectionFactory
+{
     
-    static $conn;
     
-    public static function create() : PDO {
+    public static function create() : PDO
+    {
         // Default parameters:
         $host = "eu-cdbr-azure-west-d.cloudapp.net";
         $db = "taskmanagement";
@@ -16,11 +17,14 @@ class ConnectionFactory{
         // $user = "testUser";
         // $pass = "testPassword";
         
-        if(!isset($conn))
-          $conn = new PDO("mysql:host=$host;dbname=$db", $user, $pass);
-         
-        return $conn;
+        if (!isset($GLOBALS['MYSQL_CONN'])) {
+              $GLOBALS['MYSQL_CONN'] = new PDO("mysql:host=$host;dbname=$db", $user, $pass);
+        }
+
+        return $GLOBALS['MYSQL_CONN'] ;
+    }
+
+    public static function closeConnetion(){
+         $GLOBALS['MYSQL_CONN'] = null;
     }
 }
-
-?>

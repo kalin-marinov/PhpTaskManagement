@@ -61,6 +61,7 @@
             array_push($result, $row);
         }
         
+        $stmt->closeCursor();
         return $result;		
     } 
   }

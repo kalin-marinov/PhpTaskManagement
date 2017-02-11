@@ -6,7 +6,7 @@ if (isset($_MODEL))  $model = $_MODEL;
   <div class="white-board">
     <div class="content centered">
       <img src="http://www.freeiconspng.com/uploads/project-icon-2.jpg" class="fix-left"  width="200" height="200" />
-      <h1> A collection of all Projects </h1>
+      <h1> you can view all available Projects </h1>
       <p> Your task are currently split into projects</p>
       <p> You may create new tasks and exists </p>
       <p> Total ammount of projects: <?=count($model)?></p>

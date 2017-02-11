@@ -6,10 +6,10 @@ if (isset($_MODEL))  $model = $_MODEL;
   <div class="white-board">
     <div class="content centered">
       <img src="https://freeiconshop.com/wp-content/uploads/edd/task-done-flat.png" class="fix-left" />
-      <h1> A collection of all tasks </h1>
+      <h1> A collection of  tasks </h1>
       <p> Your task are currently split into projects</p>
       <p> You may create new tasks and exists </p>
-      <p> Total amaunt of available tasks: <?=count($model) ?></p>
+      <p> Total amount of available tasks: <?=count($model) ?></p>
 
     </div>
   </div>

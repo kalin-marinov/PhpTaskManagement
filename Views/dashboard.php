@@ -5,7 +5,7 @@ if (isset($_MODEL))  $model = $_MODEL;
 
   <div class="white-board">
     <div class="content centered">
-      <img src="http://www.freeiconspng.com/uploads/project-icon-2.jpg" class="fix-left"  width="200" height="200" />
+      <img src="http://www.freeiconspng.com/uploads/dashboard-icon-3.png" class="fix-left"  width="200" height="200" />
       <h1> Your own issues!</h1>
       <p> You can find all takss assigned to you here </p>
       <p> Tasks can be re-assigned later </p>
